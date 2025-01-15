@@ -1,4 +1,4 @@
-//class->id? p21
+//class->id/className? p21
 import { Link } from "react-router-dom";
 export default function Profile() {
   return (
@@ -16,5 +16,5 @@ export default function Profile() {
         <option value="FACULTY">Faculty</option> <option value="STUDENT">Student</option>
       </select><br/>
       <Link to="/Kambaz/Account/Signin" >Sign out</Link>
-</div>
+    </div>
 );}

@@ -5,7 +5,7 @@ export default function Lab1(){
 
             <h3>HTML Examples</h3>
             
-            <div id="wd-h-tag">
+        <div id="wd-h-tag">
             <h4>Heading Tags</h4>
             Text documents are often broken up into several sections and
             subsections. Each section is usually prefaced with a short
@@ -19,10 +19,10 @@ export default function Lab1(){
             large headings. There are 6 heading tags for different sizes:
             h1, h2, h3, h4, h5, and h6. Tag h1 is the largest heading and
             h6 is the smallest heading.
-            </div>
+        </div>
 
             {/*do the next exercise here */}
-            <div id="wd-p-tag">
+        <div id="wd-p-tag">
             <h4>Paragraph Tag</h4>
             <p id="wd-p-1">
             This is a paragraph. We often separate a long set
@@ -59,8 +59,9 @@ export default function Lab1(){
             This is the third paragraph. Wrap each paragraph with the paragraph
             tag to tell browsers to render the gaps.
             </p>
+        </div>
 
-            <div id = "wd-lists">
+        <div id = "wd-lists">
                 <h4>List Tags</h4>
                 <h5>Ordered List Tag</h5>
                 How to make pancakes:
@@ -99,7 +100,6 @@ export default function Lab1(){
                     <li>The Courage To Be Disliked</li>
                     <li>Think Fast</li>
                 </ul>
-            </div>
         </div>
 
         <div id = "wd-tables">
@@ -187,15 +187,14 @@ export default function Lab1(){
         </div>
 
         <div id="wd-images">
-        <h4>Image tag</h4>
-        Loading an image from the internet: <br />
-        <img id="wd-starship" width="400px"
-        src="https://www.staradvertiser.com/wp-content/uploads/2021/08/web1
-        _Starship-gap2.jpg" />
-        <br />
-        Loading a local image:
-        <br />
-        <img id="wd-teslabot" src="images/teslabot.jpg" height="200px" />
+            <h4>Image tag</h4>
+            Loading an image from the internet: <br />
+            <img id="wd-starship" width="400px"
+            src="https://www.staradvertiser.com/wp-content/uploads/2021/08/web1_Starship-gap2.jpg"/>
+            <br />
+            Loading a local image:
+            <br />
+            <img id="wd-teslabot" src="src/assets/teslabot.jpg" height="200px" />
         </div>
 
 
@@ -220,15 +219,12 @@ export default function Lab1(){
                 title="The last name"
                 id="wd-text-fields-last-name" />
             {/* copy rest of form elements here  */}
-        </form>
-        </div>
 
-        <div id = "wd-textarea">
-        <h5>Textarea</h5>
-            <textarea cols={50} rows={5}
-            placeholder="Biography"
-            title="tooltip">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            <h5>Textarea</h5>
+            <textarea cols={20} rows={25}
+                placeholder="Biography"
+                title="tooltip">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
             </textarea>
 
             <h5>Text boxes</h5>
@@ -241,115 +237,110 @@ export default function Lab1(){
             esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
             cupidatat non proident, sunt in culpa qui officia deserunt mollit
             anim id est laborum.</textarea>
+        
+            <h5 id = "wd-buttons">Buttons</h5>
+            <button type="button"
+                    onClick={() => alert("Life is Good!")}
+                    id="wd-all-good">
+                    Hello World!
+            </button>
 
+            <h5 id="wd-radio-buttons">Radio buttons</h5>
+            <label>Favorite movie genre:</label><br />
+
+            <input type="radio" name="radio-genre" id="wd-radio-comedy"/>
+            <label htmlFor="wd-radio-comedy">Comedy</label><br />
+
+            <input type="radio" name="radio-genre" id="wd-radio-drama"/>
+            <label htmlFor="wd-radio-drama">Drama</label><br />
+
+            <input type="radio" name="radio-genre" id="wd-radio-scifi" checked/>
+            <label htmlFor="wd-radio-scifi">Science Fiction</label> <br />
+
+            <input type="radio" name="radio-genre" id="wd-radio-fantasy"/>
+            <label htmlFor="wd-radio-fantasy">Fantasy</label>
+
+
+            <h5 id="wd-checkboxes">Checkboxes</h5>
+            <label>Favorite movie genre:</label><br/>
+
+            <input type="checkbox" name="check-genre" id="wd-chkbox-comedy" checked/>
+            <label htmlFor="wd-chkbox-comedy">Comedy</label><br/>
+
+            <input type="checkbox" name="check-genre" id="wd-chkbox-drama"/>
+            <label htmlFor="wd-chkbox-drama">Drama</label><br/>
+
+            <input type="checkbox" name="check-genre" id="wd-chkbox-scifi" checked/>
+            <label htmlFor="wd-chkbox-scifi">Science Fiction</label><br/>
+
+            <input type="checkbox" name="check-genre" id="wd-chkbox-fantasy"/>
+            <label htmlFor="wd-chkbox-fantasy">Fantasy</label>
+
+            <p></p>
+            <select>
+                <option value="VAL1">Value 1</option>
+                <option value="VAL2" selected>Value 2</option>
+                <option value="VAL3">Value 3</option>
+            </select>
+
+            <p></p>
+            <select multiple>
+                <option value="VAL1" selected>Value 1</option>
+                <option value="VAL2">Value 2</option>
+                <option value="VAL3" selected>Value 3</option>
+            </select>
+
+            <h4 id="wd-dropdowns">Dropdowns</h4>
+            <h5>Select one</h5>
+            <label htmlFor="wd-select-one-genre"> Favorite movie genre: </label><br/>
+            <select id="wd-select-one-genre">
+                <option value = "COMEDY">Comedy</option>
+                <option value = "DRAMA">drama</option>
+                <option selected value="SCIFI">Science Fiction</option>
+                <option value = "FANTASY">Fantacy</option>
+            </select>
+
+            <h5>Select many</h5>
+            <label htmlFor="wd-select-many-genre"> Favorite movie genres: </label><br/>
+            <select multiple id="wd-select,manu-genre">
+                <option selected value="COMEDY">Comedy</option>
+                <option value="DRAMA">Drama</option>
+                <option selected value="SCIFI">Science Fiction</option>
+                <option value="FANTASY">Fantasy</option>
+            </select>
+
+            <h4>Other HTML field types</h4>
+                <label htmlFor="wd-text-fields-email"> Email: </label>
+                <input type="email"
+                        placeholder="jdoe#somewhere.com"
+                        id="wd-text-fields-email"/><br/>
+                
+                <label htmlFor="wd-text-fields-salary-start"> Starting salary: </label>
+                <input type="number"
+                        value="100000"
+                        placeholder="1000"
+                        id="wd-text-fields-salary-start"/><br/>
+
+                <label htmlFor="wd-text-fields-rating"> Rating: </label>
+                <input type="range"
+                        value="4"
+                        max="5"
+                        placeholder="Doe"
+                        id="wd-text-fields-rating"/><br/>
+
+                <label htmlFor="wd-text-fields-dob"> Date of birth: </label>
+                <input type="date"
+                        value="2000-01-21"
+                        id="wd-text-fields-dob"/><br/>
+
+            <h4>Anchor tag</h4>
+                Please <a href="http://www.lipsum.com" id="wd-lipsum"> click here </a>
+                to get dummy text<br/>
+
+            <h4>Github Anchor</h4>
+                Please <a href="https://github.com/YuHsuan-Y/kambaz-react-web-app/tree/main" id="wd-github"> click here </a>
+                to navigate to Github<br/>
+        </form>
         </div>
-        
-        <h5 id = "wd-buttons">Buttons</h5>
-        <button type="button"
-                onClick={() => alert("Life is Good!")}
-                id="wd-all-good">
-                Hello World!
-        </button>
-
-        <p></p>
-        <input type="radio"
-                name="NAME1"
-                value="OPTION1"/>
-        <input type="radio"
-                name="NAME1"
-                value="OPTION2" checked/>
-
-        <h5 id="wd-radio-buttons">Radio buttons</h5>
-        <label>Favorite movie genre:</label><br />
-        <input type="radio" name="radio-genre" id="wd-radio-comedy"/>
-        <label htmlFor="wd-radio-comedy">Comedy</label><br />
-        <input type="radio" name="radio-genre" id="wd-radio-drama"/>
-        <label htmlFor="wd-radio-drama">Drama</label><br />
-        <input type="radio" name="radio-genre" id="wd-radio-scifi"/>
-        <label htmlFor="wd-radio-scifi">Science Fiction</label><br />
-        <input type="radio" name="radio-genre" id="wd-radio-fantasy"/>
-        <label htmlFor="wd-radio-fantasy">Fantasy</label>
-
-        <input type="checkbox"
-                name = "NAME2"
-                value = "OPTION1" checked/>
-        <input type="checkbox"
-                name = "NAME2"
-                value = "OPTION2"/>
-        <input type="checkbox"
-                name="NAME3"
-                value = "OPITON3" checked/>
-
-        <h5 id="wd-checkboxes">Checkboxes</h5>
-        <label>Favorite movie genre:</label><br/>
-        <input type="checkbox" name="check-genre" id="wd-chkbox-comedy"/>
-        <label htmlFor="wd-chkbox-comedy">Comedy</label><br/>
-        <input type="checkbox" name="check-genre" id="wd-chkbox-drama"/>
-        <label htmlFor="wd-chkbox-drama">Drama</label><br/>
-        <input type="checkbox" name="check-genre" id="wd-chkbox-scifi"/>
-        <label htmlFor="wd-chkbox-scifi">Science Fiction</label><br/>
-        <input type="checkbox" name="check-genre" id="wd-chkbox-fantasy"/>
-        <label htmlFor="wd-chkbox-fantasy">Fantasy</label>
-
-        <p></p>
-        <select>
-        <option value="VAL1">Value 1</option>
-        <option value="VAL2" selected>Value 2</option>
-        <option value="VAL3">Value 3</option>
-        </select>
-
-        <select multiple>
-        <option value="VAL1" selected>Value 1</option>
-        <option value="VAL2">Value 2</option>
-        <option value="VAL3" selected>Value 3</option>
-        </select>
-
-        <h4 id="wd-dropdowns">Dropdowns</h4>
-        <h5>Select one</h5>
-        <label htmlFor="wd-select-one-genre"> Favorite movie genre: </label><br/>
-        <select id="wd-select-one-genre">
-            <option value = "COMEDY">Comedy</option>
-            <option value = "DRAMA">drama</option>
-            <option selected value="SCIFI">Science Fiction</option>
-            <option value = "FANTASY">Fantacy</option>
-        </select>
-
-        <h5>Select many</h5>
-        <label htmlFor="wd-select-many-genre"> Favorite movie genres: </label><br/>
-        <select multiple id="wd-select,manu-genre">
-            <option selected value="COMEDY">Comedy</option>
-            <option value="DRAMA">Drama</option>
-            <option selected value="SCIFI">Science Fiction</option>
-            <option value="FANTASY">Fantasy</option>
-        </select>
-
-        <h4>Other HTML field types</h4>
-        <label htmlFor="wd-text-fields-email"> Email: </label>
-        <input type="email"
-                placeholder="jdoe#somewhere.com"
-                id="wd-text-fields-email"/><br/>
-        
-        <label htmlFor="wd-text-fields-salary-start"> Starting salary: </label>
-        <input type="number"
-                value="100000"
-                placeholder="1000"
-                id="wd-text-fields-salary-start"/><br/>
-
-        <label htmlFor="wd-text-fields-rating"> Rating: </label>
-        <input type="range"
-                value="4"
-                max="5"
-                placeholder="Doe"
-                id="wd-text-fields-rating"/><br/>
-
-        <label htmlFor="wd-text-fields-dob"> Date of birth: </label>
-        <input type="date"
-                value="2000-01-21"
-                id="wd-text-fields-dob"/><br/>
-
-        <h4>Anchor tag</h4>
-        Please <a href="http://www.lipsum.com" id="wd-lipsum"> click here </a>
-        to get dummy text<br/>
-
 </div>
 );}

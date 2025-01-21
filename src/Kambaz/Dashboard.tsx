@@ -14,7 +14,7 @@ export default function Dashboard() {
               <h5> CS1234 React JS </h5>
               <p className="wd-dashboard-course-title">
                 Full Stack software developer  </p>
-              <button> Go </button>
+              <button> Go </button><br/>
             </div>
           </Link>
         </div>
@@ -28,7 +28,7 @@ export default function Dashboard() {
               <p className="wd-dashboard-CS4550">
                 CS4550.125631.202410
               </p>
-              <button> Go </button>
+              <button> Go </button><br/>
           </div>
         </Link>
       </div>
@@ -42,7 +42,7 @@ export default function Dashboard() {
               <p className="wd-dashboard-CS5002">
                 CS5002.12130.202410
               </p>
-              <button> Go </button>
+              <button> Go </button><br/>
             </div>
         </Link>
       </div>
@@ -56,7 +56,7 @@ export default function Dashboard() {
             <p className="wd-dashboard-CS5800">
               CS5800.50294.202450
             </p>
-            <button> Go </button>
+            <button> Go </button><br/>
           </div>
         </Link>
       </div>
@@ -70,7 +70,7 @@ export default function Dashboard() {
             <p className="wd-dashboard-CS5004">
               CS5004.39596.202430
             </p>
-            <button> Go </button>
+            <button> Go </button><br/>
           </div>
         </Link>
       </div>
@@ -84,7 +84,7 @@ export default function Dashboard() {
             <p className="wd-dashboard-CS5005">
               CS5005.39599.202430
             </p>
-            <button> Go </button>
+            <button> Go </button><br/>
           </div>
         </Link>
       </div>
@@ -98,7 +98,7 @@ export default function Dashboard() {
             <p className="wd-dashboard-CS5001">
               CS5001.12121.202409
             </p>
-            <button> Go </button>
+            <button> Go </button><br/>
           </div>
         </Link>
       </div>

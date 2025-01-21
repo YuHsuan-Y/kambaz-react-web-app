@@ -101,15 +101,13 @@ export default function Editor(){
                     <br/>
                     </td>
                 
-                    <td align="left" valign="top">
-                        <label htmlFor="wd-assign-to">Assign Assign to</label>
+                    <td>
+                        <label htmlFor="wd-assign-to">Assign to</label>
                     </td>
                 </tr>
                 <tr>
-                    <td>
                     <br/>
-                    </td>
-                    <td align="right" valign="middle">
+                    <td>
                         <input id="wd-assign-to" type="text" defaultValue="Everyone"/>
                     </td>
                 </tr><br/>
@@ -118,23 +116,19 @@ export default function Editor(){
                     <td>
                     <br/>
                     </td>
-                    <td align="left" valign="middle">
+                    <td>
                         <label htmlFor="wd-due-date">Due</label><br/>
                     </td>
                 </tr>
                 <tr>
-                    <td>
                     <br/>
-                    </td>
                     <td>
                         <input type="date" id="wd-due-date" value="2024-05-13"/>
                     </td>
                 </tr><br/>
 
                 <tr>
-                    <td>
                     <br/>
-                    </td>
                     <td>
                         <label htmlFor="wd-available-from">Available From</label>
                     </td>
@@ -146,19 +140,22 @@ export default function Editor(){
                 </tr>
 
                 <tr>
-
+                    <br/>
                     <td>
                         <input type="date" id="wd-available-from" value="2024-05-06"/>
                     </td>
 
-                    <td>
-                    <br/>
-                    </td>
                     <td>
                         <input type="date" id="wd-available-until" value="2024-05-20"/>
                     </td>
                 </tr>
 
             </table>
+            <hr/>
+
+            <div style={{ textAlign: "right" }}>
+                <button>Cancel</button>
+                <button>Save</button>
+            </div>
         </div>
 );}

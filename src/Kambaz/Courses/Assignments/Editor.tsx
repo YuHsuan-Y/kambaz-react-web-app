@@ -153,10 +153,9 @@ export default function Editor(){
             </table>
             <hr/>
 
-            <div align="right">
-            <button>Cancel</button>
-            <button>Save</button>
+            <div style={{ textAlign: "right" }}>
+                <button>Cancel</button>
+                <button>Save</button>
             </div>
-
         </div>
 );}

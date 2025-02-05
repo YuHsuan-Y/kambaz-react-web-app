@@ -1,0 +1,47 @@
+body {margin:0; padding:0;}
+body *{font-family:Arial, Helvetica, sans-ref;}
+
+@media(min-width:768px){
+    #wd-kambaz .wd-main-content-offset{
+        padding-left: 140px !important;
+    }
+}
+
+/*
+Targets any element with both .list-group and .wd classes.
+Selects the direct child .list-group-item.active inside .list-group.wd
+*/
+.list-group.wd > .list-group-item.active{
+    color: black;
+    background-color: white;
+    border-left: 3px solid black !important;
+}
+
+.btn-secondary{
+    --bs-btn-color: #000 !important;
+    --bs-btn-bg: #c7cdd1 !important;
+    --bs-btn-border-color: #c7cdd1 !important;
+    --bs-btn-hover-color: #fff !important;
+}
+.bg-secondary{
+    --bs-secondary-rgb: 199, 205, 209;
+}
+.list-group-item{
+    --bs-list-group-border-color: gray;
+}
+.wd-lesson{
+    border-left: 3px solid green !important;
+}
+.wd-add-assignment{
+    float:right;
+}
+
+#wd-signin-screen {
+    margin-top: 200px;
+}
+#wd-signup-screen {
+    margin-top: 200px;
+}
+#wd-profile-screen {
+    margin-top: 200px;
+}

@@ -1,0 +1,26 @@
+.flex-container{
+    border-width:0.1px;
+    border-color:gray;
+    border-style:solid;
+    margin: 10px;
+    padding: 10px;
+
+}
+
+.flex-container-assign{
+    border-width:0.1px;
+    border-color:gray;
+    border-style:solid;
+    margin: 5px;
+    padding: 10px;
+
+}
+
+.wd-grid-col-two-thirds-page { 
+    width: 33%; 
+    float: left; 
+}
+.wd-grid-col-third-page      { 
+    width: 67%; 
+    float: right; 
+}

@@ -1,23 +1,25 @@
 import Modules from "../Modules";
 import CourseStatus from "./Status";
 export default function Home(){
-    return(
-        <table id="wd-home">
-            <div id = "wd-button">
-                <button>Collapse All</button>
-                <button>View Progress</button>
-                <button>Publish All</button>
-                <button>+ Module</button>
-            </div>
-            <tr>
-                <td valign="top">
-                    <Modules />
-                </td>
+    return(       
 
-                <td valign="top">
+            <div className="d-flex gap-5" id="wd-home">
+            {/* gap-5 Vertical stack of single buttons */}
+                <div className="flex-fill">
+                    <Modules />
+                </div>
+                <div className="d-none d-md-block">
                     <CourseStatus />
-                </td>
-            </tr>
-        </table>
+                </div>
+            </div>
+                /*
+                    <div id = "wd-button">
+                    <button>Collapse All</button>
+                    <button>View Progress</button>
+                    <button>Publish All</button>
+                    <button>+ Module</button>
+                    </div>
+                */
+            
     );
 }

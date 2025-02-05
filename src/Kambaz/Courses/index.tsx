@@ -1,33 +1,85 @@
 import CourseNavigation from "./Navigation";
 import Modules from "./Modules";
+import Piazza from "./Piazza";
+import Zoom from "./Zoom";
 import Home from "./Home";
 import Assignments from "./Assignments";
 import AssignmentEditor from "./Assignments/Editor";
+import Quizzes from "./Quizzes";
+import Grades from "./Grades";
+import PeopleTable from "./People/Table";
+
+import { FaAlignJustify } from "react-icons/fa";
+//import ModulesControls from "./Modules";
 
 import{Navigate, Route, Routes} from "react-router";
 export default function Courses(){
     return(
         <div id="wd-courses">
-            <h2>Course 1234</h2>
+            <h2 className="text-danger">
+                <FaAlignJustify className="me-4 fs-4 mb-1" />
+                Course 1234</h2>
             <hr />
-            <table>
-                <tr>
-                    <td valign="top">
-                        <CourseNavigation />
-                    </td>
+            <div className="d-flex">
+                <div className="d-none d-md-block">
+                    <CourseNavigation />
+                </div>
+                
+                <div className="flex-fill">
+                    <Routes>
+                        <Route path="/" element={<Navigate to="Home"/>} />
+                        <Route path="Home" element={<Home />} />
+                        <Route path="Modules" element={<Modules/>}/>
+                        <Route path="Piazza" element={<Piazza/>}/>
+                        <Route path ="Zoom" element={<Zoom/>}/>
+                        <Route path="Assignments" element={<Assignments/>} />
+                        <Route path="Assignments/:aid" element={<AssignmentEditor />} />
+                        <Route path="Quizzes" element={<Quizzes/>}/>
+                        <Route path ="Grades" element={<Grades/>}/>
+                        <Route path="People" element={<PeopleTable />}/>
 
-                    <td valign="top">
-                        <Routes>
-                            <Route path="/" element={<Navigate to="Home"/>} />
-                            <Route path="Home" element={<Home />} />
-                            <Route path="Modules" element={<Modules/>}/>
-                            <Route path="Assignments" element={<Assignments/>} />
-                            <Route path="Assignments/:aid" element={<AssignmentEditor />} />
-                            <Route path="Grades" element={<h2>Grades</h2>}/>
-                        </Routes>
-                    </td>
-                </tr>
-            </table>
+                    </Routes>
+                </div>
+             </div>
+
         </div>
     );
+            /*
+             <div>
+                <ModulesControls /><br/><br/><br/><br/>
+                <ul id="wd-modules" className="list-group rounded-0">
+                    <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray">
+                        <div className="wd-title p-3 ps-2 bg-secondary"> Week 1</div>
+                        <ul className="wd-lessons list-group rounded-0">
+                            <li className="wd-lesson list-group-item p-3 ps-1">
+                                LEARNING OBJECTIVES
+                            </li>
+
+                            <li className="wd-lesson list-group-item p-3 ps-1">
+                                Introduction to the course
+                            </li>
+
+                            <li className="wd-lesson list-group-item p-3 ps-1">
+                                Learn what is Web Development
+                            </li>
+
+                            <li className="wd-lesson list-group-item p-3 ps-1">
+                                LESSON 1
+                            </li>
+
+                            <li className="wd-lesson list-group-item p-3 ps-1">
+                                LESSON 2
+                            </li>
+                        </ul>
+                    </li>
+                    <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray">
+                        <div className="wd-title p-3 ps-2 bg-secondary"> Week 2</div>
+                        <ul className="wd-lessons list-group rounded-0">
+                            <li className="wd-lesson list-group-item p-3 ps-1"> LESSON 1</li>
+                            <li className="wd-lesson list-group-item p-3 ps-1"> LESSON 2</li>
+                        </ul>
+                    </li>
+                </ul>
+             </div>
+            */
 }

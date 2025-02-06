@@ -54,15 +54,13 @@ export default function Editor(){
                     <option value="LETTERGRADE">Letter Grade</option>
                 </select>
             </div>
- 
+            <br/>
 
-            <div>
-                <br/>
-                <label htmlFor="wd-submission-type" className="wd-grid-col-two-thirds-page"> Submission Type </label>
+            <label htmlFor="wd-submission-type" className="wd-grid-col-two-thirds-page"> Submission Type </label>
             <div className="flex-container wd-grid-col-third-page"> 
 
                 <div className="flex-container form-control dropdown">
-                <span className="dropdown-toggle me-3" form-control data-bs-toggle="dropdown">
+                <span className="dropdown-toggle" form-control data-bs-toggle="dropdown">
                     Online
                 </span>
 
@@ -91,29 +89,29 @@ export default function Editor(){
                 <label htmlFor="wd-file-upload"> File Uploads</label>
                 
             </div>
-            </div>
+   
 
             <table>
             <label htmlFor="wd-assign-to" className="wd-grid-col-two-thirds-page">Assign</label>
             <div className="flex-container-assign wd-grid-col-third-page">
-                    <label htmlFor="wd-assign-to" className="p-3 fw-bold">Assign to</label>
+                    <label htmlFor="wd-assign-to" className="p-2 fw-bold">Assign to</label>
     
                     <input id="wd-assign-to" type="text" defaultValue="Everyone" className="form-control"/>
     
-                    <label htmlFor="wd-due-date" className="p-3 fw-bold">Due</label><br/>
+                    <label htmlFor="wd-due-date" className="p-2 fw-bold">Due</label><br/>
             
                     <input type="date" id="wd-due-date" value="2024-05-13" className="form-control"/>
         
-                    <label htmlFor="wd-available-from" className="wd-grid-col-half-page p-3 fw-bold">Available From</label>
+                    <label htmlFor="wd-available-from" className="wd-grid-col-half-page p-2 fw-bold">Available From</label>
         
-                    <label htmlFor="wd-available-until" className="p-3 fw-bold">Until</label>
+                    <label htmlFor="wd-available-until" className="p-2 fw-bold">Until</label>
         
                     <input type="date" id="wd-available-from" className="wd-grid-col-half-page form-control" value="2024-05-06"/>
         
                     <input type="date" id="wd-available-until" value="2024-05-20" className="wd-grid-col-half-page form-control"/>
             </div>
+          
             </table>
-             
              <div style={{ bottom:0, textAlign: "right" }}>
                         <hr/>
                         <button>Cancel</button>

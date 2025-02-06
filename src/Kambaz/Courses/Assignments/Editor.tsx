@@ -57,10 +57,9 @@ export default function Editor(){
             <br/>
 
             <label htmlFor="wd-submission-type" className="wd-grid-col-two-thirds-page"> Submission Type </label>
-            <div className="flex-container wd-grid-col-third-page"> 
-
+            <div className="flex-container wd-grid-col-third-page">
                 <div className="flex-container form-control dropdown">
-                <span className="dropdown-toggle" form-control data-bs-toggle="dropdown">
+                <span className="dropdown-toggle me-3" form-control data-bs-toggle="dropdown">
                     Online
                 </span>
 
@@ -92,7 +91,7 @@ export default function Editor(){
    
 
             <table>
-            <label htmlFor="wd-assign-to" className="wd-grid-col-two-thirds-page">Assign</label>
+            <label htmlFor="wd-assign-to">Assign</label>
             <div className="flex-container-assign wd-grid-col-third-page">
                     <label htmlFor="wd-assign-to" className="p-2 fw-bold">Assign to</label>
     

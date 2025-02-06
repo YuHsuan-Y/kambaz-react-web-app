@@ -45,7 +45,7 @@ export default function KambazNavigation(){
                     Inbox
                 </Link>
 
-                <Link to="/Kambaz/Labs" id="wd-labs-link"
+                <Link to="../Labs" id="wd-labs-link"
                     className="list-group-item text-white bg-black text-center border-0">
                     <LiaCogSolid className="fs-1 text-danger"/><br/>
                     Labs

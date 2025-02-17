@@ -1,5 +1,7 @@
 export default function Zoom(){
     return(
-        <h1>Zoom</h1>
+        <div className="d-flex gap-5" id="wd-zoom">
+            <h1>Zoom</h1>
+        </div>
     );
 }

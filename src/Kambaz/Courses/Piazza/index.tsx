@@ -1,6 +1,6 @@
 export default function Piazza(){
     return(
-        <div id="wd-piazza" className="text-nowrap">
+        <div id="wd-piazza">
                <h1 className="mb-3">Piazza</h1>
             <div className="d-flex justify-content-between align-items-center mb-3">
                 <div className="input-group w-50">

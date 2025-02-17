@@ -6,7 +6,7 @@ import Lab3 from "./Lab3";
 
 export default function Labs(){
     return (
-        <div id="wd-labs">
+        <div className = "p-3" id="wd-labs">
             <h1>Labs</h1>
             <h4>First Name: Yu-Hsuan</h4>
             <h4>Last Name: Yang</h4>
@@ -15,7 +15,9 @@ export default function Labs(){
                 <Route path="/" element={<Navigate to="Lab1" />} />
                 <Route path="Lab1" element={<Lab1 />} />
                 <Route path="Lab2" element={<Lab2 />} />
-                <Route path="Lab3" element={<Lab3 />} />
+                <Route path="Lab3/*" element={<Lab3 />} />
+                
+
             </Routes>
 
         </div>

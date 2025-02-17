@@ -1,6 +1,6 @@
 export default function Styles(){
-    const colorBlack = {color:"black"};
-    const padding10px = {padding:"10px"};
+    const colorBlack = { color: "black" };
+    const padding10px = { padding: "10px" };
     
     const bgBlue = {"backgroundColor": "lightBlue",
                     "color": "black",
@@ -8,8 +8,7 @@ export default function Styles(){
     };
 
     const bgRed = {"backgroundColor": "lightcoral",
-                    "color": "black",
-                    "padding": "10px"
+                    colorBlack, padding10px
     };
     return(
         <div id="wd-styles">

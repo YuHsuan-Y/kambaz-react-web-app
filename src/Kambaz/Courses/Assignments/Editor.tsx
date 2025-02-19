@@ -4,7 +4,7 @@ import {Link, useParams} from "react-router-dom";
 import "./index.css";
 
 export default function Editor(){
-    const {cid} = useParams();
+    const {cid, aid} = useParams();
     const assignments = db.assignments;
 
     return(
@@ -12,7 +12,7 @@ export default function Editor(){
             <label htmlFor="wd-name">Assignment Name</label><br/>
             <br/>
             {assignments.filter((assignment) => 
-                assignment.course === cid)
+                assignment.course === cid  && assignment._id === aid)
 
             .map((assignment: any) => ( 
 
@@ -56,18 +56,21 @@ export default function Editor(){
             </div>
             </table>
             <br/>
-            <hr/>
-
             </div> 
             ))
             }
             
             <div style={{ bottom:0, textAlign: "right" }}>
                 <hr/>
-                <button>Cancel</button>
-                <button style={{color:"white", backgroundColor:"red" }}>Save</button>
+                
+                <Link to={`/Kambaz/Courses/${cid}/Assignments`}>
+                    <button>Cancel</button>
+                </Link>
+
+                <Link to={`/Kambaz/Courses/${cid}/Assignments`}>
+                    <button style={{color:"white", backgroundColor:"red" }}>Save</button>
+                </Link>
             </div>
-            
         </div> 
 );}
 

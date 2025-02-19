@@ -16,7 +16,7 @@ export default function Classes(){
 
             <div className={`${dangerous ? 'wd-bg-red' : 'wd-bg-green'}
                                             wd-fg-black wd-padding-10px`}>
-            Dangerous background
+                Dangerous background
             </div>
 
             <div className = "wd-bg-blue wd-fg-black wd-padding-10px">

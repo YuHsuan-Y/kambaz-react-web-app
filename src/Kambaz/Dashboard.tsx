@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-
+import {enroll, unenroll} from "./Courses/enrollmentReducer";
 import FacultyRoute from "./Account/FacultyRoute";
 import StudentRoute from "./Account/StudentRoute";
 import * as db from "./Database";
+
 export default function Dashboard({
   courses,
   course,
@@ -137,17 +138,4 @@ export default function Dashboard({
       </div>
     </div>
   );
-}
-function enroll({ userId, courseId }: { userId: string; courseId: string }) {
-  return {
-    type: "ENROLL_COURSE",
-    payload: { userId, courseId },
-  };
-}
-
-function unenroll({ userId, courseId }: { userId: string; courseId: string }) {
-  return {
-    type: "UNENROLL",
-    payload: { userId, courseId },
-  };
 }

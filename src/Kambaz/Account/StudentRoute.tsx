@@ -1,5 +1,6 @@
 import {useSelector, useDispatch} from "react-redux";
 //import {useParams} from "react-router-dom";
+import {enroll, unenroll} from "../Courses/enrollmentReducer";
 
 export default function StudentRoute({
   children, courseId,
@@ -11,36 +12,34 @@ export default function StudentRoute({
   const { enrollments } = useSelector((state: any) => state.enrollments);
   const dispatch = useDispatch();
 
-
   if (!currentUser || currentUser.role !== "STUDENT" || !courseId) {
     return null;
   }
 
-  const isEnrolled = enrollments.some(
+  const isEnrolled = Array.isArray(enrollments) && enrollments.some(
     (e: { user: string; course: string }) =>
       e.user === currentUser._id && e.course === courseId
   );
 
-
   return (
     <div>
       {isEnrolled ? (
-
         <button
           className="btn btn-danger float-end"
-          onClick={() =>
-            dispatch(unenroll({ userId: currentUser._id, courseId }))
-          }
+          onClick={(e) => {
+            e.preventDefault();
+            dispatch(unenroll({ userId: currentUser._id, courseId }));
+          }}
         >
           Unenroll
         </button>
       ) : (
-
         <button
           className="btn btn-success float-end"
-          onClick={() =>
-            dispatch(enroll({ userId: currentUser._id, courseId }))
-          }
+          onClick={(e) => {
+            e.preventDefault(); // Prevent default to avoid page navigation
+            dispatch(enroll({ userId: currentUser._id, courseId }));
+          }}
         >
           Enroll
         </button>
@@ -87,17 +86,3 @@ export default function StudentRoute({children}: {children: React.ReactNode}){
     return null;
 }
 */
-
-function enroll({ userId, courseId }: { userId: string; courseId: string }) {
-  return {
-    type: "ENROLL_COURSE",
-    payload: { userId, courseId },
-  };
-}
-
-function unenroll({ userId, courseId }: { userId: string; courseId: string }) {
-  return {
-    type: "UNENROLL",
-    payload: { userId, courseId },
-  };
-}

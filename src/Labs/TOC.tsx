@@ -25,10 +25,7 @@ export default function TOC(){
             <li className="nav-item"><a id="wd-a4" href="#/Labs/Lab4"
                 className={`nav-link ${pathname.includes("Lab4") ? "active" : ""}`}>Lab 4</a> </li>
 
-            <li className="nav-item me-2"><a id="wd-a5" href="#/Labs/Lab5"
-                className={`nav-link ${pathname.includes("Lab5") ? "active" : ""}`}>Lab 5</a> </li>
-
-            <li className="nav-item "><a id="wd-k" href="#/Kambaz" 
+            <li className="nav-item"><a id="wd-k" href="#/Kambaz" 
                 className={`nav-link' ${pathname.includes("#/Kambaz") ? "active" : "" }`}>Kambaz</a></li>
 
             <li className="nav-item"><a id="wd-github" href="https://github.com/YuHsuan-Y/kambaz-react-web-app/tree/main" target="_blank"

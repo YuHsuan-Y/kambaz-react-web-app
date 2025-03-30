@@ -9,6 +9,7 @@ export default function WorkingWithObjects() {
     });
 
     const ASSIGNMENT_API_URL = `${REMOTE_SERVER}/lab5/assignment`
+    const MODULE_API_URL = `${REMOTE_SERVER}/lab5/module`
 
     const [module, setModule] = useState({
         id: 1, name: "NodeJS Module",
@@ -79,13 +80,13 @@ export default function WorkingWithObjects() {
             
             <h4>Module</h4>
                 <a id="wd-get-module" className="btn btn-primary"
-                    href={`${REMOTE_SERVER}/lab5/module`}>
+                    href={`${MODULE_API_URL}`}>
                 Get Module
                 </a><hr/>
             
             <h4>Get Module Name</h4>
                 <a id="wd-get-module-name" className="btn btn-primary"
-                    href={`${REMOTE_SERVER}/lab5/module/name`}>
+                    href={`${MODULE_API_URL}/name`}>
                         Get Name
                 </a><hr/>
 
@@ -93,7 +94,7 @@ export default function WorkingWithObjects() {
 
                 <a id="wd-update-module-name" 
                 className="btn btn-primary float-end"
-                    href={`${REMOTE_SERVER}/lab5/module/name/${module.name}`}>
+                    href={`${MODULE_API_URL}/name/${module.name}`}>
                         Update Name
                 </a>
 

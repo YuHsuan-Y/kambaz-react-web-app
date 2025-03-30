@@ -1,16 +1,23 @@
 import * as client from "./client";
 import { useEffect, useState} from "react";
-
+//const REMOTE_SERVER = import.meta.env.VITE_REMOTE_SERVER;
 
 export default function HttpClient(){
     const [welcomeOnClick, setWelcomeOnClick] = useState("");
     const [welcomeOnLoad, setWelcomeOnLoad] = useState("");
+    
     
     const fetchWelcomeOnClick = async () => {
         const message = await client.fetchWelcomeMessage();
         setWelcomeOnClick(message);
     };
     
+    /*
+    const fetchWelcomeOnClick = async()=>{
+        const response  = await axios.get(`${REMOTE_SERVER}/lab5/welcome`);
+        setWelcomeOnClick(response.data);
+    };
+    */
     const fetchWelcomeOnLoad = async()=>{
         const welcome = await client.fetchWelcomeMessage();
         setWelcomeOnLoad(welcome);

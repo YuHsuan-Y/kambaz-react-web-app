@@ -106,13 +106,13 @@ export default function Dashboard({
       const currentEnrollmentStatus = isEnrolled(courseId);
       
       if (currentEnrollmentStatus) {
-        // Handle unenroll
+
         await courseClient.unenrollFromCourse(currentUser._id, courseId);
         dispatch(unenroll({ userId: currentUser._id, courseId }));
         // Update enrolledCourses state to remove the unenrolled course
         setEnrolledCourses(prevEnrolled => prevEnrolled.filter(course => course._id !== courseId));
       } else {
-        // Handle enroll
+
         await courseClient.enrollInCourse(currentUser._id, courseId);
         dispatch(enroll({ userId: currentUser._id, courseId }));
         const courseToEnroll = allCourses.find(c => c._id === courseId);
@@ -191,7 +191,7 @@ export default function Dashboard({
                 <Card>
                   <Link 
                     className="wd-dashboard-course-link text-decoration-none text-dark"
-                    to={isEnrolled(course._id) ? `/Kambaz/Courses/${course._id}/Home` : "#"}
+                    to={isEnrolled(course._id) ? `/Kambaz/Courses/${course._id}/Modules` : "#"}
                     onClick={(e) => !isEnrolled(course._id) && e.preventDefault()}
                   >
                     <Card.Img 
@@ -216,35 +216,63 @@ export default function Dashboard({
                   <Card.Body className="pt-0">
                     {/*FACULTY*/}
                     {isFaculty && (
-                      <div className="d-flex justify-content-between mt-3">
-                        <div className="w-100 pe-2">
-                          <button onClick={(e) => {
-                            e.preventDefault();
-                            deleteCourse(course._id);
-                          }}
-                          className="btn btn-danger float-end">
+                      <div className="d-flex flex-column gap-2 mt-3">
+                        <div className="d-flex justify-content-between gap-2">
+                          <Link 
+                            to={`/Kambaz/Courses/${course._id}/Modules`}
+                            className="btn btn-primary flex-grow-1"
+                          >
+                            Go
+                          </Link>
+                          <button 
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleCourseSelect(course);
+                            }}
+                            className="btn btn-warning flex-grow-1"
+                          >
+                            Edit
+                          </button>
+                          <button 
+                            onClick={(e) => {
+                              e.preventDefault();
+                              deleteCourse(course._id);
+                            }}
+                            className="btn btn-danger flex-grow-1"
+                          >
                             Delete
                           </button>
                         </div>
-                        <div className="w-100 ps-2">
-                          <button onClick={(e) => {
-                            e.preventDefault();
-                            handleCourseSelect(course);
-                          }}
-                          className="btn btn-warning me-2 float-end">
-                            Edit
-                          </button>
+                        <div className="d-flex justify-content-between gap-2">
+                          <Link 
+                            to={`/Kambaz/Courses/${course._id}/Assignments`}
+                            className="btn btn-outline-primary flex-grow-1"
+                          >
+                            Assignments
+                          </Link>
                         </div>
                       </div>
                     )}
                     {isStudent && (
-                      <button 
-                        onClick={() => handleEnrollToggle(course._id)}
-                        className={`btn ${isEnrolled(course._id) ? 'btn-danger' : 'btn-success'} w-100 mt-2`}
-                        disabled={loading}
-                      >
-                        {loading ? 'Processing...' : isEnrolled(course._id) ? 'Unenroll' : 'Enroll'}
-                      </button>
+                      <div className="d-flex flex-column gap-2">
+                        <button 
+                          onClick={() => handleEnrollToggle(course._id)}
+                          className={`btn ${isEnrolled(course._id) ? 'btn-danger' : 'btn-success'} w-100`}
+                          disabled={loading}
+                        >
+                          {loading ? 'Processing...' : isEnrolled(course._id) ? 'Unenroll' : 'Enroll'}
+                        </button>
+                        {isEnrolled(course._id) && (
+                          <>
+                            <Link 
+                              to={`/Kambaz/Courses/${course._id}/Assignments`}
+                              className="btn btn-outline-primary w-100"
+                            >
+                              Assignments
+                            </Link>
+                          </>
+                        )}
+                      </div>
                     )}
                   </Card.Body>
                 </Card>

@@ -21,7 +21,7 @@ export default function ModuleRoutes(app){
 
     app.delete("/api/modules/:moduleId", async(req,res) => {
         const {moduleId} = req.params;
-        const status = await modulesDao.deleteMosule(moduleId);
+        const status = await modulesDao.deleteModule(moduleId);
         res.send(status);
     });
 

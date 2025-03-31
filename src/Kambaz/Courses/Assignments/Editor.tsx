@@ -1,8 +1,120 @@
-import * as db from "../../Database"; 
-import {Link, useParams} from "react-router-dom";
-
+/*edit existing assignment */
+//import * as db from "../../Database"; 
+import {Link, useParams, useNavigate} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { updateAssignment } from "./reducer";
 import "./index.css";
+export default function Editor(){
+    const {cid, aid} = useParams();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    //const assignments = db.assignments;
+    const assignment = useSelector((state: any) => 
+        state.assignmentReducer.assignments.find((a: any) => a._id === aid)
+    );
 
+    const [formData, setFormData] = useState({
+        title: assignment?.title || "",
+        description: assignment?.description || "",
+        points: assignment?.points || "",
+        dueDate: assignment?.dueDate || "",
+        availableFrom: assignment?.availableFrom || "",
+        availableTo: assignment?.availableTo || "",
+    });
+
+    const handleSave = () => {
+        // Dispatch update action with combined assignment data
+        dispatch(updateAssignment({
+            ...assignment,
+            ...formData,
+            _id: aid,
+            course: cid,
+        }));
+       
+        navigate(`/Kambaz/Courses/${cid}/Assignments`);
+    };
+
+    const handleCancel = () => {
+        navigate(`/Kambaz/Courses/${cid}/Assignments`);
+    };
+
+    return(
+        <div id="wd-course-assignment-editor">
+            <label htmlFor="wd-name">Assignment Name</label><br/>
+            <br/>
+                <div key={assignment._id}> 
+                    <Link to = {`/Kambaz/Courses/${cid}/Assignments/${assignment._id}`}></Link>
+                
+                    <input  id="wd-name" value={assignment.title} className="form-control"/> <br/>
+
+                    <textarea id="wd-description" className="form-control" contentEditable="true"
+                        value={assignment.description}
+                            onChange={(e) => setFormData({ 
+                            ...formData, 
+                            description: e.target.value })}
+                            rows={5}/>
+
+                    <br/>
+
+                    <div className="d-flex align-items-center">  
+                        <label htmlFor="wd-points" className="wd-grid-col-two-thirds-page">Points</label>
+            
+                        <input id="wd-points"  className="form-control" value={assignment.points} 
+                            onChange={(e) => setFormData({ 
+                            ...formData, points: e.target.value })}/> 
+                    
+                    </div>
+                    <br/>
+
+
+            <table>
+
+            <label htmlFor="wd-assign-to">Assign</label>
+            <div className="flex-container-assign wd-grid-col-third-page">
+                    <label htmlFor="wd-assign-to" className="p-2 fw-bold">Assign to</label>
+    
+                    <input id="wd-assign-to" type="text" defaultValue="Everyone" className="form-control"/>
+    
+                    <label htmlFor="wd-due-date" className="p-2 fw-bold">Due</label><br/>
+            
+                    <input type="date" id="wd-due-date" value={assignment.dueDate} className="form-control"
+                        onChange={(e) => setFormData({ 
+                        ...formData, dueDate: e.target.value })}/>
+        
+                    <label htmlFor="wd-available-from" className="wd-grid-col-half-page p-2 fw-bold">Available From</label>
+        
+                    <label htmlFor="wd-available-until" className="p-2 fw-bold">Until</label>
+        
+                    <input type="date" id="wd-available-from" className="wd-grid-col-half-page form-control" value={assignment.availableFrom}
+                        onChange={(e) => setFormData({ 
+                        ...formData, availableFrom: e.target.value })}/>
+        
+                    <input type="date" id="wd-available-until" value={assignment.availableTo} className="wd-grid-col-half-page form-control"
+                        onChange={(e) => setFormData({ 
+                        ...formData, availableTo: e.target.value })}/>
+            </div>
+            </table>
+            <br/>
+            </div> 
+            ))
+            
+            
+            <div style={{ bottom:0, textAlign: "right" }}>
+                <hr/>
+                
+                <button onClick = {handleCancel}>Cancel</button>
+               
+
+                <Link to={`/Kambaz/Courses/${cid}/Assignments`}>
+                    <button onClick = {handleSave}
+                    style={{color:"white", backgroundColor:"red" }}>Save</button>
+                </Link>
+            </div>
+        </div> 
+);}
+
+/*
 export default function Editor(){
     const {cid, aid} = useParams();
     const assignments = db.assignments;
@@ -73,9 +185,10 @@ export default function Editor(){
             </div>
         </div> 
 );}
+*/
 
  
-            {/*
+            /*
         
             <input id="wd-name" value="A1" className="form-control"/> <br/>
   
@@ -180,4 +293,4 @@ export default function Editor(){
         
                     <input type="date" id="wd-available-until" value="2024-05-20" className="wd-grid-col-half-page form-control"/>
             </div>
-            */}
+            */

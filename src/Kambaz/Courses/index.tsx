@@ -12,7 +12,7 @@ import PeopleTable from "./People/Table";
 //import {courses} from "../Database";
 import { FaAlignJustify } from "react-icons/fa";
 //import ModulesControls from "./Modules";
-import{Navigate, Route, Routes, useParams, useLocation} from "react-router";
+import { Navigate, Route, Routes, useParams, useLocation } from "react-router-dom";
 
 export default function Courses({courses}:{courses:any[]}){
     const {cid} = useParams();
@@ -36,13 +36,12 @@ export default function Courses({courses}:{courses:any[]}){
                         <Route path="Home" element={<Home />} />
                         <Route path="Modules" element={<Modules/>}/>
                         <Route path="Piazza" element={<Piazza/>}/>
-                        <Route path ="Zoom" element={<Zoom/>}/>
+                        <Route path="Zoom" element={<Zoom/>}/>
                         <Route path="Assignments/*" element={<Assignments/>} />
                         <Route path="Assignments/:aid" element={<Editor />} />
                         <Route path="Quizzes" element={<Quizzes/>}/>
-                        <Route path ="Grades" element={<Grades/>}/>
+                        <Route path="Grades" element={<Grades/>}/>
                         <Route path="People" element={<PeopleTable />}/>
-
                     </Routes>
                 </div>
              </div>

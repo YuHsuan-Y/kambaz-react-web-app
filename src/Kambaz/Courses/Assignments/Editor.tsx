@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { updateAssignment } from "./reducer";
 import "./index.css";
+import * as client from "./client";
+
 export default function Editor(){
     const {cid, aid} = useParams();
     const navigate = useNavigate();
@@ -22,8 +24,7 @@ export default function Editor(){
         availableFrom: assignment?.availableFrom || "",
         availableTo: assignment?.availableTo || "",
     });
-
-    const handleSave = () => {
+    {/*    const handleSave = () => {
         // Dispatch update action with combined assignment data
         dispatch(updateAssignment({
             ...assignment,
@@ -32,7 +33,30 @@ export default function Editor(){
             course: cid,
         }));
        
-        navigate(`/Kambaz/Courses/${cid}/Assignments`);
+        navigate(`/Kambaz/Courses/${cid}/Assignments`); */}
+    const handleSave = async () => {
+        try {
+            // Update assignment on server
+            await client.updateAssignment({
+                ...assignment,
+                ...formData,
+                _id: aid,
+                course: cid,
+            });
+            
+            // Update local state
+            dispatch(updateAssignment({
+                ...assignment,
+                ...formData,
+                _id: aid,
+                course: cid,
+            }));
+            
+            navigate(`/Kambaz/Courses/${cid}/Assignments`);
+        } catch (error) {
+            console.error("Error updating assignment:", error);
+            // You might want to show an error message to the user here
+        }
     };
 
     const handleCancel = () => {
@@ -45,30 +69,33 @@ export default function Editor(){
             <br/>
                 <div key={assignment._id}> 
                     <Link to = {`/Kambaz/Courses/${cid}/Assignments/${assignment._id}`}></Link>
-                
-                    <input  id="wd-name" value={assignment.title} className="form-control"/> <br/>
+                    
+                    {/*<input  id="wd-name" value={assignment.title} className="form-control"/> <br/> */}
+                    <input  id="wd-name" value={formData.title} className="form-control"
+                        onChange={(e) => setFormData({...formData, title: e.target.value})}/> <br/>
 
-                    <textarea id="wd-description" className="form-control" contentEditable="true"
+                    {/* <textarea id="wd-description" className="form-control" contentEditable="true"
                         value={assignment.description}
-                            onChange={(e) => setFormData({ 
+                            onChange={(e) => setFormData({  */}
+                    <textarea id="wd-description" className="form-control" 
+                        value={formData.description}
+                        onChange={(e) => setFormData({ 
                             ...formData, 
                             description: e.target.value })}
-                            rows={5}/>
+                        rows={5}/>
 
                     <br/>
 
                     <div className="d-flex align-items-center">  
                         <label htmlFor="wd-points" className="wd-grid-col-two-thirds-page">Points</label>
-            
-                        <input id="wd-points"  className="form-control" value={assignment.points} 
+                        {/*<input id="wd-points"  className="form-control" value={assignment.points}  */}
+                        <input id="wd-points"  className="form-control" value={formData.points} 
                             onChange={(e) => setFormData({ 
                             ...formData, points: e.target.value })}/> 
                     
                     </div>
                     <br/>
-
-
-            <table>
+{/*<table>
 
             <label htmlFor="wd-assign-to">Assign</label>
             <div className="flex-container-assign wd-grid-col-third-page">
@@ -97,22 +124,46 @@ export default function Editor(){
             </table>
             <br/>
             </div> 
-            ))
-            
+            )) */}
+                    <table>
+                        <label htmlFor="wd-assign-to">Assign</label>
+                        <div className="flex-container-assign wd-grid-col-third-page">
+                            <label htmlFor="wd-assign-to" className="p-2 fw-bold">Assign to</label>
+                            <input id="wd-assign-to" type="text" defaultValue="Everyone" className="form-control"/>
+                            
+                            <label htmlFor="wd-due-date" className="p-2 fw-bold">Due</label><br/>
+                            <input type="date" id="wd-due-date" value={formData.dueDate} className="form-control"
+                                onChange={(e) => setFormData({ 
+                                ...formData, dueDate: e.target.value })}/>
+                            
+                            <label htmlFor="wd-available-from" className="wd-grid-col-half-page p-2 fw-bold">Available From</label>
+                            <label htmlFor="wd-available-until" className="wd-grid-col-half-page p-2 fw-bold">Until</label>
+                            
+                            <input type="date" id="wd-available-from" className="wd-grid-col-half-page form-control" 
+                                value={formData.availableFrom}
+                                onChange={(e) => setFormData({ 
+                                ...formData, availableFrom: e.target.value })}/>
+                            
+                            <input type="date" id="wd-available-until" value={formData.availableTo} 
+                                className="wd-grid-col-half-page form-control"
+                                onChange={(e) => setFormData({ 
+                                ...formData, availableTo: e.target.value })}/>
+                        </div>
+                    </table>
+                    <br/>
+                </div>
             
             <div style={{ bottom:0, textAlign: "right" }}>
                 <hr/>
-                
-                <button onClick = {handleCancel}>Cancel</button>
-               
-
-                <Link to={`/Kambaz/Courses/${cid}/Assignments`}>
-                    <button onClick = {handleSave}
+                <button onClick={handleCancel}>Cancel</button>
+                {/*<Link to={`/Kambaz/Courses/${cid}/Assignments`}>
+                    <button onClick = {handleSave} */}
+                <button onClick={handleSave}
                     style={{color:"white", backgroundColor:"red" }}>Save</button>
-                </Link>
             </div>
         </div> 
-);}
+    );
+}
 
 /*
 export default function Editor(){

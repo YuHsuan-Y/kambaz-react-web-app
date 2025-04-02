@@ -4,6 +4,7 @@ import {deleteTodo, setTodo} from "./todosReducer";
 interface Todo {
     id: string;
     title: string;
+    completed?: boolean;
 }
 
 export default function TodoItem({ todo }: { todo: Todo }) {

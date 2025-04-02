@@ -117,7 +117,12 @@ export default function Modules() {
                                     <ModuleControlButtons 
                                         moduleId={module._id}
                                         deleteModule={handleDeleteModule}
-                                        editModule={() => handleUpdateModule({...module, editing: true})}
+                                        editModule={(moduleId) => {
+                                            const moduleToEdit = modules.find((m: any) => m._id === moduleId);
+                                            if (moduleToEdit) {
+                                                handleUpdateModule({...moduleToEdit, editing: true});
+                                            }
+                                        }}
                                     />
                                 </div>
 

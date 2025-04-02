@@ -42,6 +42,11 @@ export default function TOC() {
                 <a id="wd-github" href="https://github.com/YuHsuan-Y/kambaz-react-web-app/tree/main" target="_blank"
                     className="nav-link">My GitHub</a>
             </li>
+
+            <li className="nav-item">
+                <a id="wd-github" href="https://dashboard.render.com/web/srv-cvl3uapr0fns73892rng" target="_blank"
+                    className="nav-link">Render</a>
+            </li>
         </ul>
     );
 }

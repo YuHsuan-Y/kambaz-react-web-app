@@ -1,9 +1,10 @@
 import { Row, Col, Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { enroll, unenroll } from "./Courses/enrollmentReducer";
 import * as courseClient from "./Courses/client";
+
 //import * as userClient from "./Account/client";
 
 interface DashboardProps {
@@ -24,6 +25,7 @@ export default function Dashboard({
   updateCourse,
 }: DashboardProps) {
   
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const [showAllCourses, setShowAllCourses] = useState(true);
@@ -218,12 +220,19 @@ export default function Dashboard({
                     {isFaculty && (
                       <div className="d-flex flex-column gap-2 mt-3">
                         <div className="d-flex justify-content-between gap-2">
-                          <Link 
-                            to={`/Kambaz/Courses/${course._id}/Modules`}
-                            className="btn btn-primary flex-grow-1"
-                          >
+                          <button onClick={async (e) => {
+                              e.preventDefault();
+                              try {
+                                await courseClient.findModulesForCourse(course._id);
+                                navigate(`/Kambaz/Courses/${course._id}/modules`);
+                              } catch (error) {
+                                console.error("Error fetching modules:", error);
+                                setError("Failed to load modules. Please try again later.");
+                              }
+                            }}
+                            className="btn btn-primary gap-2">
                             Go
-                          </Link>
+                          </button>
                           <button 
                             onClick={(e) => {
                               e.preventDefault();

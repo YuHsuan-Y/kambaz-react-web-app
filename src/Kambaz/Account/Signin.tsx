@@ -121,7 +121,7 @@ export default function Signin() {
           </button>
           <div className="text-center">
             <Link id="wd-signup-link" to="/Kambaz/Account/Signup" className="text-decoration-none">
-              Don't have an account? Sign up
+              Sign up
             </Link>
           </div>
         </div>

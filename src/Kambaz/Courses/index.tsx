@@ -12,18 +12,23 @@ import PeopleTable from "./People/Table";
 //import {courses} from "../Database";
 import { FaAlignJustify } from "react-icons/fa";
 //import ModulesControls from "./Modules";
-import{Navigate, Route, Routes, useParams, useLocation} from "react-router";
+import { Navigate, Route, Routes, useParams, useLocation } from "react-router-dom";
 
 export default function Courses({courses}:{courses:any[]}){
     const {cid} = useParams();
     const course = courses.find((course) => course._id === cid);
     const {pathname} = useLocation();
 
+    if (!course) {
+        return <Navigate to="/Kambaz/Dashboard" />;
+    }
+
     return(
         <div id="wd-courses">
             <h2 className="text-danger">
                 <FaAlignJustify className="me-4 fs-4 mb-1" />
-                {course && course.name} &gt; {pathname.split("/")[4]}</h2>
+                {course.name} &gt; {pathname.split("/")[4] || "Home"}
+            </h2>
             <hr />
             <div className="d-flex">
                 <div className="d-none d-md-block">
@@ -36,13 +41,12 @@ export default function Courses({courses}:{courses:any[]}){
                         <Route path="Home" element={<Home />} />
                         <Route path="Modules" element={<Modules/>}/>
                         <Route path="Piazza" element={<Piazza/>}/>
-                        <Route path ="Zoom" element={<Zoom/>}/>
+                        <Route path="Zoom" element={<Zoom/>}/>
                         <Route path="Assignments/*" element={<Assignments/>} />
                         <Route path="Assignments/:aid" element={<Editor />} />
                         <Route path="Quizzes" element={<Quizzes/>}/>
-                        <Route path ="Grades" element={<Grades/>}/>
+                        <Route path="Grades" element={<Grades/>}/>
                         <Route path="People" element={<PeopleTable />}/>
-
                     </Routes>
                 </div>
              </div>

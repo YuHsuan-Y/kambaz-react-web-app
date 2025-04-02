@@ -4,11 +4,10 @@ import {useParams} from "react-router";
 import ModulesControls from "./ModulesControls";
 import LessonControlButtons from "./LessonControlButtons";
 import ModuleControlButtons from "./ModuleControlButtons";
-
-import {useState, useEffect} from "react";
+import {useSelector, useDispatch} from "react-redux";
 
 import {setModules,addModule, editModule, updateModule, deleteModule} from "./reducer";
-import {useSelector, useDispatch} from "react-redux";
+import {useState, useEffect} from "react";
 
 import * as coursesClient from "../client";
 import * as modulesClient from "./client";
@@ -77,8 +76,9 @@ export default function Modules(){
                                             defaultValue={module.name}/>
                                 )}
                                 <ModuleControlButtons moduleId={module._id}
-                                deleteModule={(moduleId)=> removeModule(moduleId)}
-                                editModule={(moduleId)=> dispatch(editModule(moduleId))}/>
+                                    deleteModule={() => removeModule(module._id)}
+                                    editModule={() => dispatch(editModule(module._id))}
+                                />
                             </div>
 
                             {module.lessons && (

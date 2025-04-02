@@ -1,9 +1,9 @@
 import AccountNavigation from "./Navigation";
-import {Routes, Route, Navigate} from "react-router";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Signin from "./Signin";
 import Profile from "./Profile";
 import Signup from "./Signup";
-import{useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
 export default function Account() {
     const{currentUser} = useSelector((state:any) => state.accountReducer);

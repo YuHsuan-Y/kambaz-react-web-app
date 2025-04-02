@@ -7,10 +7,9 @@ interface ModulesControlsProps {
     moduleName: string;
     setModuleName: (title: string) => void;
     addModule: () => void;
-    disabled?: boolean;
 }
 
-export default function ModulesControls({ moduleName, setModuleName, addModule, disabled = false }: ModulesControlsProps) {
+export default function ModulesControls({ moduleName, setModuleName, addModule }: ModulesControlsProps) {
     return (
         <div id="wd-modules-controls" className="text-nowrap">
             <button id="wd-add-module-btn" className="btn btn-lg btn-danger me-1 float-end"

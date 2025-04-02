@@ -88,7 +88,6 @@ export default function Modules() {
                 setModuleName={setModuleName} 
                 moduleName={moduleName} 
                 addModule={handleAddModule}
-                disabled={loading}
             /> 
             <br /><br /><br /><br/>
 
@@ -118,7 +117,7 @@ export default function Modules() {
                                     <ModuleControlButtons 
                                         moduleId={module._id}
                                         deleteModule={handleDeleteModule}
-                                        editModule={(moduleId) => handleUpdateModule({...module, editing: true})}
+                                        editModule={() => handleUpdateModule({...module, editing: true})}
                                     />
                                 </div>
 

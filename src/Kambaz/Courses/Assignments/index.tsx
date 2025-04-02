@@ -8,12 +8,14 @@ import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { addAssignment, deleteAssignment } from "./reducer";
 import AssignmentsControls from "./AssignmentsControls";
+import { useNavigate } from "react-router-dom";
 
 export default function Assignments(){
     const {cid} = useParams();
     //const {assignments} = db;
     const dispatch = useDispatch();
     const assignments = useSelector((state:any) => state.assignmentReducer.assignments);
+    const navigate = useNavigate();
     
     const [assignment, setAssignment] = useState({
         title: "",
@@ -30,7 +32,29 @@ export default function Assignments(){
                 assignmentName={assignment}
                 setAssignmentName={setAssignment}
                 addAssignment={() => {
-                    dispatch(addAssignment({ ...assignment, course: cid }));
+                    if (!cid) return;
+                    dispatch(addAssignment({ 
+                        ...assignment, 
+                        course: cid,
+                        description: assignment.description
+                    }));
+                    setAssignment({
+                        title: "",
+                        description: "",
+                        points: "",
+                        dueDate: "",
+                        availableFrom: "",
+                        availableTo: "",
+                    });
+                }}
+                dialogTitle="Assignment Name"
+                saveAssignment={() => {
+                    if (!cid) return;
+                    dispatch(addAssignment({ 
+                        ...assignment, 
+                        course: cid,
+                        description: assignment.description
+                    }));
                     setAssignment({
                         title: "",
                         description: "",
@@ -49,7 +73,13 @@ export default function Assignments(){
                     <div className="wd-title p-4 ps-2 bg-secondary">
                         <BsGripVertical className="me-2 fs-3"/>
                         <span className="wd-title fw-bold">ASSIGNMENTS</span>
-                        <AssignmentControlButtons/>
+                        <AssignmentControlButtons
+                            totalPoints={40}
+                            onAdd={() => {
+                                // Handle adding a new assignment group
+                                console.log("Add assignment group");
+                            }}
+                        />
                     </div>
             
             {/*Assignment list*/}
@@ -73,7 +103,10 @@ export default function Assignments(){
                             deleteAssignment={(assignmentId) => {
                                 dispatch(deleteAssignment(assignmentId));
                             }}
-                           
+                            editAssignment={(assignmentId) => {
+                                // Navigate to the editor page for this assignment
+                                navigate(`/Kambaz/Courses/${cid}/Assignments/${assignmentId}/edit`);
+                            }}
                         />
                         <br/>
                         <span className="fw-bold p-4">Due</span>{assignment.dueDate} | {assignment.points} pts

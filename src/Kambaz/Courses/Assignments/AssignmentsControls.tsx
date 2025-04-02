@@ -2,11 +2,7 @@
 import AssignmentsEditor from "./AssignmentsEditor";
 import {BsSearch} from "react-icons/bs";
 
-export default function AssignmentsControls({
-    assignmentName,
-    setAssignmentName,
-    addAssignment
-}: {
+interface AssignmentsControlsProps {
     assignmentName: {
         title: string;
         description: string;
@@ -24,7 +20,17 @@ export default function AssignmentsControls({
         availableTo: string;
     }) => void;
     addAssignment: () => void;
-}) {
+    dialogTitle: string;
+    saveAssignment: () => void;
+}
+
+export default function AssignmentsControls({
+    assignmentName,
+    setAssignmentName,
+    addAssignment,
+    dialogTitle,
+    saveAssignment
+}: AssignmentsControlsProps) {
     return (
         <div className="d-flex justify-content-between align-items-center">
             <div className="input-group w-50">
@@ -60,10 +66,11 @@ export default function AssignmentsControls({
             </div>
 
             <AssignmentsEditor 
-                dialogTitle="Assignment Name"
+                dialogTitle={dialogTitle}
                 assignmentName={assignmentName}
                 setAssignmentName={setAssignmentName}
                 addAssignment={addAssignment}
+                saveAssignment={saveAssignment}
             />
         </div>
     );

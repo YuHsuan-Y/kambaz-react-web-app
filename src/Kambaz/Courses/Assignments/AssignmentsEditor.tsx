@@ -2,6 +2,7 @@
 //import {Link} from "react-router-dom";
 
 export default function AssignmentsEditor({ dialogTitle, assignmentName, setAssignmentName, addAssignment,
+    saveAssignment
 }:
     {dialogTitle: string; 
     assignmentName:{
@@ -14,6 +15,7 @@ export default function AssignmentsEditor({ dialogTitle, assignmentName, setAssi
      };
     setAssignmentName:(assignment:any) => void;
     addAssignment: () => void;
+    saveAssignment: () => void;
 
     }){
         return(
@@ -68,7 +70,9 @@ export default function AssignmentsEditor({ dialogTitle, assignmentName, setAssi
                             <button type="button" className="btn btn-secondary" 
                                 data-bs-dismiss="modal">Cancel</button>
                             <button onClick={addAssignment} type="button" 
-                                data-bs-dismiss="modal" className="btn btn-danger">Add Assignment</button>
+                                data-bs-dismiss="modal" className="btn btn-danger">Add</button>
+                            <button onClick={saveAssignment} type="button" 
+                                data-bs-dismiss="modal" className="btn btn-danger">Save Assignment</button>
                         </div>
                         
                        

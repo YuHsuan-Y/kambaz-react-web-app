@@ -50,6 +50,7 @@ export default function Editor(){
                 ...formData,
                 _id: aid,
                 course: cid,
+                description: formData.description,
             }));
             
             navigate(`/Kambaz/Courses/${cid}/Assignments`);

@@ -47,7 +47,7 @@ export default function Assignments(){
                         availableTo: "",
                     });
                 }}
-                dialogTitle="Assignment Name"
+                dialogTitle="Add Assignment"
                 saveAssignment={() => {
                     if (!cid) return;
                     dispatch(addAssignment({ 

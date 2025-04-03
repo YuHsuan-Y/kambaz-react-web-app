@@ -1,124 +1,56 @@
-import { useLocation, useNavigate } from "react-router-dom";
-//import {Link} from "react-router-dom";
-//<Link to="/Labs">Labs</Link></li>
-//<li><Link to="/Labs/Lab1">Lab 1</Link></li>
-//<li><Link to="/Labs/Lab2">Lab 2</Link></li>
-//<li><Link to="/Labs/Lab3">Lab 3</Link></li>
-//<li><Link to="/Kambaz">Kambaz</Link></li>
-//<li><a href="https://github.com/YuHsuan-Y/kambaz-react-web-app/tree/main" id="wd-github"> Github </a></li>
-            
-export default function TOC(){
-    const {pathname} = useLocation();
-    const navigate = useNavigate();
-    return(
+import { Link, useLocation } from "react-router-dom";
+           
+export default function TOC() {
+    const { pathname } = useLocation();
+    return (
         <ul className="nav nav-pills" id="wd-toc">
             <li className="nav-item">
-                <a 
-                    id="wd-a" 
-                    href="#/Labs" 
-                    className={`nav-link ${pathname === "/Labs" ? "active" : ""}`}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        navigate("/Labs");
-                    }}
-                >
-                    Labs
-                </a>
+                <Link id="wd-a" to="/Labs" className="nav-link">Labs</Link>
             </li>
 
             <li className="nav-item">
-                <a 
-                    id="wd-a1" 
-                    href="#/Labs/Lab1"
-                    className={`nav-link ${pathname.includes("Lab1") ? "active" : ""}`}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        navigate("/Labs/Lab1");
-                    }}
-                >
-                    Lab 1
-                </a>
+                <Link id="wd-a1" to="/Labs/Lab1"
+                    className={`nav-link ${pathname.includes("Lab1") ? "active" : ""}`}>Lab 1</Link>
             </li>
 
             <li className="nav-item">
-                <a 
-                    id="wd-a2" 
-                    href="#/Labs/Lab2"
-                    className={`nav-link ${pathname.includes("Lab2") ? "active" : ""}`}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        navigate("/Labs/Lab2");
-                    }}
-                >
-                    Lab 2
-                </a>
+                <Link id="wd-a2" to="/Labs/Lab2"
+                    className={`nav-link ${pathname.includes("Lab2") ? "active" : ""}`}>Lab 2</Link>
             </li>
 
             <li className="nav-item">
-                <a 
-                    id="wd-a3" 
-                    href="#/Labs/Lab3"
-                    className={`nav-link ${pathname.includes("Lab3") ? "active" : ""}`}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        navigate("/Labs/Lab3");
-                    }}
-                >
-                    Lab 3
-                </a>
+                <Link id="wd-a3" to="/Labs/Lab3"
+                    className={`nav-link ${pathname.includes("Lab3") ? "active" : ""}`}>Lab 3</Link>
             </li>
 
             <li className="nav-item">
-                <a 
-                    id="wd-a4" 
-                    href="#/Labs/Lab4"
-                    className={`nav-link ${pathname.includes("Lab4") ? "active" : ""}`}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        navigate("/Labs/Lab4");
-                    }}
-                >
-                    Lab 4
-                </a>
+                <Link id="wd-a4" to="/Labs/Lab4"
+                    className={`nav-link ${pathname.includes("Lab4") ? "active" : ""}`}>Lab 4</Link>
+            </li>
+
+            <li className="nav-item me-2">
+                <Link id="wd-a5" to="/Labs/Lab5"
+                    className={`nav-link ${pathname.includes("Lab5") ? "active" : ""}`}>Lab 5</Link>
             </li>
 
             <li className="nav-item">
-                <a 
-                    id="wd-a5" 
-                    href="#/Labs/Lab5"
-                    className={`nav-link ${pathname.includes("Lab5") ? "active" : ""}`}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        navigate("/Labs/Lab5");
-                    }}
-                >
-                    Lab 5
-                </a>
+                <Link id="wd-k" to="/Kambaz" 
+                    className={`nav-link ${pathname.includes("/Kambaz") ? "active" : ""}`}>Kambaz</Link>
             </li>
 
             <li className="nav-item">
-                <a 
-                    id="wd-k" 
-                    href="#/Kambaz" 
-                    className={`nav-link ${pathname.includes("/Kambaz") ? "active" : ""}`}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        navigate("/Kambaz");
-                    }}
-                >
-                    Kambaz
-                </a>
+                <a id="wd-github" href="https://github.com/YuHsuan-Y/kambaz-react-web-app/tree/main" target="_blank"
+                    className="nav-link">My GitHub</a>
             </li>
 
             <li className="nav-item">
-                <a 
-                    id="wd-github" 
-                    href="https://github.com/YuHsuan-Y/kambaz-react-web-app/tree/main" 
-                    target="_blank"
-                    className="nav-link"
-                >
-                    My GitHub
-                </a>
+                <a id="wd-github" href="https://dashboard.render.com/web/srv-cvl3uapr0fns73892rng" target="_blank"
+                    className="nav-link">Render</a>
+            </li>
+
+            <li className="nav-item">
+                <Link id="wd-k" to="/Labs/Husky" 
+                    className={`nav-link ${pathname.includes("/Husky") ? "active" : ""}`}>Husky</Link>
             </li>
         </ul>
     );

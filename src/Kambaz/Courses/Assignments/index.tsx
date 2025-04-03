@@ -40,12 +40,14 @@ export default function Assignments(){
     };
 
     const removeAssignment = async(assignmentId: string) => {
-        await client.deleteAssignment(assignmentId); //send to server
+        if (!cid) return;
+        await client.deleteAssignment(cid, assignmentId);
         dispatch(deleteAssignment(assignmentId)); //update the state
     };
 
     const saveAssignment = async(assignment: any) => {
-        await client.updateAssignment(assignment); 
+        if (!cid) return;
+        await client.updateAssignment(cid, assignment._id, assignment); 
         dispatch(updateAssignment(assignment));
     };
 
@@ -71,6 +73,10 @@ export default function Assignments(){
         setShowEditor(true);
     };
 
+    const handleSaveAssignment = () => {
+        saveAssignment(assignment);
+    };
+
     useEffect(() => {
         fetchAssignments();
     }, []);
@@ -81,6 +87,8 @@ export default function Assignments(){
                 assignmentName={assignment}
                 setAssignmentName={setAssignment}
                 addAssignment={handleAdd}
+                dialogTitle={isEditing ? "Edit Assignment" : "Add Assignment"}
+                saveAssignment={handleSaveAssignment}
             />
             <br/>
             

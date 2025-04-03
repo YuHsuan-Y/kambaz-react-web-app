@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { enroll, unenroll } from "./Courses/enrollmentReducer";
 import * as courseClient from "./Courses/client";
+
 //import * as userClient from "./Account/client";
 
 interface DashboardProps {
@@ -11,19 +12,20 @@ interface DashboardProps {
   course: any;
   setCourse: (course: any) => void;
   addNewCourse: () => void;
-  deleteCourse: (course: any) => void;
+  deleteCourse: (courseId: any) => void;
   updateCourse: () => void;
-  findModulesForCourse: (courseId: string) => void;
 }
 
 export default function Dashboard({
-  courses,
-  course,
-  setCourse,
+  courses, 
+  course, 
+  setCourse, 
   addNewCourse,
-  deleteCourse,
+  deleteCourse, 
   updateCourse,
 }: DashboardProps) {
+  
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const [showAllCourses, setShowAllCourses] = useState(true);
@@ -31,11 +33,11 @@ export default function Dashboard({
   const [error, setError] = useState<string | null>(null);
   const [enrolledCourses, setEnrolledCourses] = useState<any[]>([]);
   const [allCourses, setAllCourses] = useState<any[]>(courses);
-  const navigate = useNavigate();
   
   const isFaculty = currentUser?.role === "FACULTY";
   const isStudent = currentUser?.role === "STUDENT";
 
+  // Fetch all courses
   useEffect(() => {
     const loadAllCourses = async () => {
       try {
@@ -46,21 +48,27 @@ export default function Dashboard({
         setError("Failed to load courses. Please try again later.");
       }
     };
-    if (currentUser) {
-      loadAllCourses();
-    }
-  }, [currentUser]);
+    loadAllCourses();
+  }, []);
 
+  // Fetch enrolled courses for student
   useEffect(() => {
     const fetchEnrolledCourses = async () => {
       if (currentUser && isStudent) {
         try {
           const enrollments = await courseClient.getEnrollments(currentUser._id);
-          const enrolledCourseIds = enrollments.map((e: any) => e.course);
-          const userCourses = allCourses.filter((course) => 
-            enrolledCourseIds.includes(course._id)
+          // Get the full course details for enrolled courses
+          const enrolledCourseDetails = await Promise.all(
+            enrollments.map(async (e: any) => {
+              try {
+                return await courseClient.fetchCourse(e.course);
+              } catch (error) {
+                console.error(`Error fetching course ${e.course}:`, error);
+                return null;
+              }
+            })
           );
-          setEnrolledCourses(userCourses);
+          setEnrolledCourses(enrolledCourseDetails.filter(Boolean));
         } catch (error) {
           console.error("Error fetching enrolled courses:", error);
           setError("Failed to load your enrolled courses. Please try again later.");
@@ -68,7 +76,7 @@ export default function Dashboard({
       }
     };
     fetchEnrolledCourses();
-  }, [currentUser, allCourses, isStudent]);
+  }, [currentUser, isStudent]);
 
   // Handle course selection for editing
   const handleCourseSelect = async (selectedCourse: any) => {
@@ -97,16 +105,22 @@ export default function Dashboard({
     setLoading(true);
     setError(null);
     try {
-      if (isEnrolled(courseId)) {
+      const currentEnrollmentStatus = isEnrolled(courseId);
+      
+      if (currentEnrollmentStatus) {
+
         await courseClient.unenrollFromCourse(currentUser._id, courseId);
         dispatch(unenroll({ userId: currentUser._id, courseId }));
-        setEnrolledCourses(enrolledCourses.filter(course => course._id !== courseId));
+        // Update enrolledCourses state to remove the unenrolled course
+        setEnrolledCourses(prevEnrolled => prevEnrolled.filter(course => course._id !== courseId));
       } else {
+
         await courseClient.enrollInCourse(currentUser._id, courseId);
         dispatch(enroll({ userId: currentUser._id, courseId }));
         const courseToEnroll = allCourses.find(c => c._id === courseId);
         if (courseToEnroll) {
-          setEnrolledCourses([...enrolledCourses, courseToEnroll]);
+          // Update enrolledCourses state to add the newly enrolled course
+          setEnrolledCourses(prevEnrolled => [...prevEnrolled, courseToEnroll]);
         }
       }
     } catch (error) {
@@ -136,7 +150,7 @@ export default function Dashboard({
               Add
             </button>
             <button className="btn btn-warning float-end me-2" onClick={updateCourse}>
-              Save
+              Update
             </button>
           </h5>
           <br />
@@ -157,7 +171,8 @@ export default function Dashboard({
         </h2>
         {isStudent && (
           <button className="btn btn-primary"
-            onClick={() => setShowAllCourses(!showAllCourses)}>
+            onClick={() => setShowAllCourses(!showAllCourses)}
+          >
             {showAllCourses ? "Show My Enrollments" : "Show All Courses"}
           </button>
         )}
@@ -178,7 +193,7 @@ export default function Dashboard({
                 <Card>
                   <Link 
                     className="wd-dashboard-course-link text-decoration-none text-dark"
-                    to={isEnrolled(course._id) ? `/Kambaz/Courses/${course._id}/Home` : "#"}
+                    to={isEnrolled(course._id) ? `/Kambaz/Courses/${course._id}/Modules` : "#"}
                     onClick={(e) => !isEnrolled(course._id) && e.preventDefault()}
                   >
                     <Card.Img 
@@ -203,7 +218,7 @@ export default function Dashboard({
                   <Card.Body className="pt-0">
                     {/*FACULTY*/}
                     {isFaculty && (
-                      <div className="d-flex flex-column gap-2">
+                      <div className="d-flex flex-column gap-2 mt-3">
                         <div className="d-flex justify-content-between gap-2">
                           <button onClick={async (e) => {
                               e.preventDefault();
@@ -218,50 +233,54 @@ export default function Dashboard({
                             className="btn btn-primary gap-2">
                             Go
                           </button>
-                        
-                          <button onClick={(e) => {
-                              e.preventDefault();
-                              deleteCourse(course._id);
-                            }}
-                            className="btn btn-danger w-30">
-                            Delete
-                          </button>
-                          <button onClick={(e) => {
+                          <button 
+                            onClick={(e) => {
                               e.preventDefault();
                               handleCourseSelect(course);
                             }}
-                            className="btn btn-warning w-30">
+                            className="btn btn-warning flex-grow-1"
+                          >
                             Edit
                           </button>
+                          <button 
+                            onClick={(e) => {
+                              e.preventDefault();
+                              deleteCourse(course._id);
+                            }}
+                            className="btn btn-danger flex-grow-1"
+                          >
+                            Delete
+                          </button>
                         </div>
-                        <Link 
-                          to={`/Kambaz/Courses/${course._id}/Assignments`}
-                          className="text-decoration-none text-dark text-center border border-secondary rounded p-2"
-                        >
-                          Assignments
-                        </Link>
+                        <div className="d-flex justify-content-between gap-2">
+                          <Link 
+                            to={`/Kambaz/Courses/${course._id}/Assignments`}
+                            className="btn btn-outline-primary flex-grow-1"
+                          >
+                            Assignments
+                          </Link>
+                        </div>
                       </div>
                     )}
                     {isStudent && (
                       <div className="d-flex flex-column gap-2">
+                        <button 
+                          onClick={() => handleEnrollToggle(course._id)}
+                          className={`btn ${isEnrolled(course._id) ? 'btn-danger' : 'btn-success'} w-100`}
+                          disabled={loading}
+                        >
+                          {loading ? 'Processing...' : isEnrolled(course._id) ? 'Unenroll' : 'Enroll'}
+                        </button>
                         {isEnrolled(course._id) && (
                           <>
-                            <Link to={`/Kambaz/Courses/${course._id}/modules`}
-                              className="btn btn-primary w-100">
-                              Go
-                            </Link>
-                            <Link to={`/Kambaz/Courses/${course._id}/Assignments`}
-                              className="text-decoration-none text-dark text-center border border-secondary rounded p-2">
+                            <Link 
+                              to={`/Kambaz/Courses/${course._id}/Assignments`}
+                              className="btn btn-outline-primary w-100"
+                            >
                               Assignments
                             </Link>
                           </>
                         )}
-                        <button 
-                          onClick={() => handleEnrollToggle(course._id)}
-                          className={`btn ${isEnrolled(course._id) ? 'btn-danger' : 'btn-success'} w-100`}
-                          disabled={loading}>
-                          {loading ? 'Processing...' : isEnrolled(course._id) ? 'Unenroll' : 'Enroll'}
-                        </button>
                       </div>
                     )}
                   </Card.Body>

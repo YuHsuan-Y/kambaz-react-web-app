@@ -19,11 +19,16 @@ export default function Courses({courses}:{courses:any[]}){
     const course = courses.find((course) => course._id === cid);
     const {pathname} = useLocation();
 
+    if (!course) {
+        return <Navigate to="/Kambaz/Dashboard" />;
+    }
+
     return(
         <div id="wd-courses">
             <h2 className="text-danger">
                 <FaAlignJustify className="me-4 fs-4 mb-1" />
-                {course && course.name} &gt; {pathname.split("/")[4]}</h2>
+                {course.name} &gt; {pathname.split("/")[4] || "Home"}
+            </h2>
             <hr />
             <div className="d-flex">
                 <div className="d-none d-md-block">

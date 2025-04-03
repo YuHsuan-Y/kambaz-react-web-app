@@ -5,7 +5,9 @@ import {useState} from "react";
 import {setCurrentUser} from "./reducer";
 import {useDispatch} from "react-redux";
 //import * as db from "../Database";
+
 import * as client from "./client";
+
 export default function Signin() {
   const [credentials, setCredentials] = useState({
     username: "",
@@ -24,7 +26,6 @@ export default function Signin() {
     navigate("/Kambaz/Dashboard");
   };
   */
-  
 
   const validateForm = () => {
     if (!credentials.username.trim()) {
@@ -74,7 +75,7 @@ export default function Signin() {
     <div id="wd-signin-screen" className="container mt-5">
       <div className="row justify-content-center">
         <div className="col-md-6">
-          <h1 className="text-center mb-5">Sign in</h1>
+          <h1 className="text-center mb-4">Sign in</h1>
           {error && (
             <div className="alert alert-danger" role="alert">
               {error}

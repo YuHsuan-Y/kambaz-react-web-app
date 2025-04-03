@@ -1,6 +1,6 @@
 //implemetns all the course related communication between the user interface and the server.
 
-//import axios from "axios";
+import axios from "axios";
 import { axiosWithCredentials } from "../Account/client";
 const REMOTE_SERVER = import.meta.env.VITE_REMOTE_SERVER;
 const COURSES_API = `${REMOTE_SERVER}/api/courses`;
@@ -9,7 +9,7 @@ const ENROLLMENTS_API = `${REMOTE_SERVER}/api/enrollments`;
 
 // Course
 export const fetchAllCourses = async() => {
-    const {data} = await axiosWithCredentials.get(COURSES_API);
+    const {data} = await axios.get(COURSES_API);
     return data;
 };
 /*
@@ -21,36 +21,25 @@ export const createCourse = async(course: any) => {
 
 
 export const deleteCourse = async(id: string) => {
-    const {data} = await axiosWithCredentials.delete(`${COURSES_API}/${id}`);
+    const {data} = await axios.delete(`${COURSES_API}/${id}`);
     return data;
 };
 
 export const updateCourse = async (course: any) => {
-    const {data} = await axiosWithCredentials.put(`${COURSES_API}/${course._id}`, course);
+    const {data} = await axios.put(`${COURSES_API}/${course._id}`, course);
     return data;
 };
 
 // Module
 export const createModuleForCourse = async (courseId: string, module:any) => {
-    const response = await axiosWithCredentials.post(
+    const response = await axios.post(
         `${COURSES_API}/${courseId}/modules`, module
     );
     return response.data;
 };
 
 export const findModulesForCourse = async (courseId: string) => {
-    const response = await axiosWithCredentials.get(`${COURSES_API}/${courseId}/modules`);
-    return response.data;
-};
-
-// Module operations
-export const deleteModule = async (courseId: string, moduleId: string) => {
-    const response = await axiosWithCredentials.delete(`${COURSES_API}/${courseId}/modules/${moduleId}`);
-    return response.data;
-};
-
-export const updateModule = async (courseId: string, moduleId: string, module: any) => {
-    const response = await axiosWithCredentials.put(`${COURSES_API}/${courseId}/modules/${moduleId}`, module);
+    const response = await axios.get(`${COURSES_API}/${courseId}/modules`);
     return response.data;
 };
 

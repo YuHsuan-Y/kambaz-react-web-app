@@ -1,10 +1,10 @@
 import {useDispatch} from "react-redux";
 import {deleteTodo, setTodo} from "./todosReducer";
 
-interface Todo {
+export interface Todo {
     id: string;
     title: string;
-    completed?: boolean;
+    completed: boolean;
 }
 
 export default function TodoItem({ todo }: { todo: Todo }) {

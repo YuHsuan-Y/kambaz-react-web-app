@@ -9,6 +9,7 @@ export default function KambazNavigation(){
     const{pathname} = useLocation();
     const links = [
         {label:"Dashboard", path:"/Kambaz/Dashboard", icon: AiOutlineDashboard},
+        //{label:"Courses", path:"/Kambaz/Dashboard", icon:LiaBookSolid},
         {label:"Courses", path:"/Kambaz/Courses", icon:LiaBookSolid},
         {label:"Calendar", path:"/Kambaz/Calendar", icon:IoCalendarOutline},
         {label:"Inbox", path:"/Kambaz/Inbox", icon:FaInbox},
@@ -40,3 +41,39 @@ export default function KambazNavigation(){
             </div>
     );
 }
+
+/* <Link to="/Kambaz/Account" id="wd-account-link"
+// className="list-group-item text-center border-0 bg-black text-white">
+// <FaRegCircleUser className="fs-1 text text-white"/><br/>
+// Account   
+// </Link>
+<Link to="/Kambaz/Dashboard" id="wd-dashboard-link"
+                    className="list-group-item text-center border-0 bg-white text-danger">
+                    <AiOutlineDashboard className="fs-1 text-danger"/><br/>
+                    Dashboard
+                </Link>
+    
+                <Link to="/Kambaz/Dashboard" id="wd-course-link" 
+                    className="list-group-item text-white bg-black text-center border-0">
+                    <LiaBookSolid className="fs-1 text-danger" /><br/>
+                    Courses 
+                </Link>
+    
+                <Link to="/Kambaz/Calendar" id="wd-calendar-link"
+                    className="list-group-item text-white bg-black text-center border-0">
+                    <IoCalendarOutline className="fs-1 text-danger"/><br/>
+                    Calendar
+                </Link>
+    
+                <Link to="/Kambaz/Inbox" id="wd-inbox-link"
+                    className="list-group-item text-white bg-black text-center border-0">
+                    <FaInbox className="fs-1 text-danger"/><br/>
+                    Inbox
+                </Link>
+
+                <Link to="../Labs" id="wd-labs-link"
+                    className="list-group-item text-white bg-black text-center border-0">
+                    <LiaCogSolid className="fs-1 text-danger"/><br/>
+                    Labs
+                </Link>
+*/

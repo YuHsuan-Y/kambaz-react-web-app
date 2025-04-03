@@ -37,12 +37,16 @@ export default function Editor(){
     const handleSave = async () => {
         try {
             // Update assignment on server
-            await client.updateAssignment({
-                ...assignment,
-                ...formData,
-                _id: aid,
-                course: cid,
-            });
+            await client.updateAssignment(
+                cid as string, 
+                aid as string, 
+                {
+                    ...assignment,
+                    ...formData,
+                    _id: aid,
+                    course: cid,
+                }
+            );
             
             // Update local state
             dispatch(updateAssignment({
@@ -50,7 +54,6 @@ export default function Editor(){
                 ...formData,
                 _id: aid,
                 course: cid,
-                description: formData.description,
             }));
             
             navigate(`/Kambaz/Courses/${cid}/Assignments`);

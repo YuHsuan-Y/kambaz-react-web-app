@@ -3,6 +3,7 @@ import AssignmentsEditor from "./AssignmentsEditor";
 import {BsSearch} from "react-icons/bs";
 
 interface AssignmentsControlsProps {
+    dialogTitle: string;
     assignmentName: {
         title: string;
         description: string;
@@ -10,26 +11,21 @@ interface AssignmentsControlsProps {
         dueDate: string;
         availableFrom: string;
         availableTo: string;
+        _id?: string;
     };
-    setAssignmentName: (assignment: {
-        title: string;
-        description: string;
-        points: string;
-        dueDate: string;
-        availableFrom: string;
-        availableTo: string;
-    }) => void;
+    setAssignmentName: (assignment: any) => void;
     addAssignment: () => void;
-    dialogTitle: string;
     saveAssignment: () => void;
+    isEditing?: boolean;
 }
 
 export default function AssignmentsControls({
+    dialogTitle,
     assignmentName,
     setAssignmentName,
     addAssignment,
-    dialogTitle,
-    saveAssignment
+    saveAssignment,
+    isEditing = false
 }: AssignmentsControlsProps) {
     return (
         <div className="d-flex justify-content-between align-items-center">
@@ -71,6 +67,7 @@ export default function AssignmentsControls({
                 setAssignmentName={setAssignmentName}
                 addAssignment={addAssignment}
                 saveAssignment={saveAssignment}
+                isEditing={isEditing}
             />
         </div>
     );

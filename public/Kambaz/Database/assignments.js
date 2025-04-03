@@ -1,4 +1,4 @@
-[
+export default [
     { "_id": "A101", "title": "Propulsion Assignment", "course": "RS101", "description": "Submit a link to the landing page of your Web application running on Netlify. The landing page should...,","points": "100", "dueDate":"2024-05-20", "availableFrom":"2024-03-20", "availableTo":"2024-04-20" },
     { "_id": "A102", "title": "Combustion Analysis", "course": "RS101", "description": "Submit a link to the landing page of your Web application running on Netlify.", "points": "90", "dueDate":"2024-01-20", "availableFrom":"2024-01-01", "availableTo":"2024-01-10" },
     { "_id": "A103", "title": "Nozzle Design Project", "course": "RS101", "description": "Submit a link to the landing page of your Web application running on Netlify.", "points": "80", "dueDate":"2024-05-20", "availableFrom":"2024-03-03", "availableTo":"2024-04-20" },
@@ -8,4 +8,4 @@
     { "_id": "A301", "title": "Structural Design Task", "course": "RS103",  "description": "Hand in the PDF file.", "points":"88", "dueDate":"2024-05-20", "availableFrom":"2024-05-05", "availableTo":"2024-06-05" },
     { "_id": "A302", "title": "Orbital Calculations", "course": "RS103", "description": "Hand in the PDF file.", "points": "85", "dueDate":"2024-05-20", "availableFrom":"2024-01-20", "availableTo":"2024-03-20" },
     { "_id": "A303", "title": "Systems Engineering Exam", "course": "RS103",  "description": "Hand in the PDF file.", "points":"99", "dueDate":"2024-05-20", "availableFrom":"2024-04-20", "availableTo":"2024-05-20" }
-  ]
+];

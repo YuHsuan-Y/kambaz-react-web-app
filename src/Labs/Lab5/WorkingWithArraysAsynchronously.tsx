@@ -5,11 +5,17 @@ import {FaPlusCircle} from "react-icons/fa";
 import {TiDelete} from "react-icons/ti";
 import {FaPencil} from "react-icons/fa6";
 
+interface Todo {
+    id: string;
+    title: string;
+    completed: boolean;
+    editing?: boolean;
+}
 
 export default function WorkingwithArraysAsynchnously(){
-    const [todos, setTodos] = useState<any[]>([]);
+    const [todos, setTodos] = useState<Todo[]>([]);
     //error message for update and delete
-    const[errorMessage, setErrorMessage] = useState(null);
+    const[errorMessage, setErrorMessage] = useState<string | null>(null);
     const createTodo = async ()=>{
         const todos = await client.createTodo();
         setTodos(todos);
@@ -17,41 +23,45 @@ export default function WorkingwithArraysAsynchnously(){
 
     //HTTP post
     const postTodo = async()=>{
-        const newTodo= await client.postTodo({
+        const newTodo = await client.postTodo({
             title:"New Posted Todo", completed:false
         });
         setTodos([...todos, newTodo]);
     };
 
     //HTTP delete
-    const deleteTodo = async(todo:any) =>{
+    const deleteTodo = async(todo: Todo) =>{
         try{
             await client.deleteTodo(todo);
             const newTodos = todos.filter((t) => t.id !== todo.id);
             setTodos(newTodos);
-        } catch(error:any){
+        } catch(error: unknown){
             console.log(error);
-            setErrorMessage(error.response.data.message);
+            if (error instanceof Error) {
+                setErrorMessage(error.message);
+            } else {
+                setErrorMessage("An unknown error occurred");
+            }
         }
     };
     const fetchTodos = async() => {
-        const todos= await client.fetchTodos();
+        const todos = await client.fetchTodos();
         setTodos(todos);
     };
 
-    const removeTodo = async(todo: any) =>{
+    const removeTodo = async(todo: Todo) =>{
         const updatedTodos = await client.removeTodo(todo);
         setTodos(updatedTodos);
     };
 
-    const editTodo = (todo:any)=>{
+    const editTodo = (todo: Todo)=>{
         const updatedTodos = todos.map(
             (t) => t.id === todo.id? {...todo, editing: true} : t 
         );
         setTodos(updatedTodos);
     };
 
-    const updateTodo = async(todo:any)=>{
+    const updateTodo = async(todo: Todo)=>{
         //await client.updateTodo(todo); -- not gonna tell server only change the local copy
         setTodos(todos.map((t) => (t.id === todo.id? todo : t )));
     };

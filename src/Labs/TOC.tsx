@@ -47,6 +47,11 @@ export default function TOC() {
                 <a id="wd-github" href="https://dashboard.render.com/web/srv-cvl3uapr0fns73892rng" target="_blank"
                     className="nav-link">Render</a>
             </li>
+
+            <li className="nav-item">
+                <Link id="wd-k" to="/Labs/Husky" 
+                    className={`nav-link ${pathname.includes("/Husky") ? "active" : ""}`}>Husky</Link>
+            </li>
         </ul>
     );
 }

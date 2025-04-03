@@ -2,8 +2,11 @@ import Labs from "./Labs";
 import Kambaz from "./Kambaz";
 import store from "./Kambaz/store";
 import {Provider} from "react-redux";
-
 import {HashRouter, Route, Routes, Navigate} from "react-router-dom";
+import Husky from "./Labs/Husky";
+import Chat from "./Labs/Husky/Chat/Chat";
+import CreatePost from "./Labs/Husky/CreatePost/CreatePost";
+import PostDetail from "./Labs/Husky/PostDetail/PostDetail";
 
 export default function App(){
   return(
@@ -14,6 +17,10 @@ export default function App(){
           <Route path="/" element={<Navigate to="Kambaz" />} />
           <Route path="/Labs/*" element={<Labs />} />
           <Route path="/Kambaz/*" element={<Kambaz />} />
+          <Route path="/Husky" element={<Husky />} />
+          <Route path="/Husky/chat" element={<Chat />} />
+          <Route path="/Husky/create-post" element={<CreatePost />} />
+          <Route path="/Husky/post-detail" element={<PostDetail />} />
         </Routes>
       </div>
       </Provider>

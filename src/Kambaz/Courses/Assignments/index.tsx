@@ -36,7 +36,7 @@ export default function Assignments(){
                     dispatch(addAssignment({ 
                         ...assignment, 
                         course: cid,
-                        description: assignment.description
+                        descriptions: assignment.description
                     }));
                     setAssignment({
                         title: "",
@@ -53,7 +53,7 @@ export default function Assignments(){
                     dispatch(addAssignment({ 
                         ...assignment, 
                         course: cid,
-                        description: assignment.description
+                        descriptions: assignment.description
                     }));
                     setAssignment({
                         title: "",

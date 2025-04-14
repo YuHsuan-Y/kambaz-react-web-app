@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {modules} from "../../Database";
+//import {modules} from "../../Database";
 import {v4 as uuidv4} from "uuid";
 
 interface Lesson {
@@ -23,7 +23,7 @@ interface ModulesState {
 }
 
 const initialState: ModulesState = {
-    modules: modules,
+    modules: [],
 };
 
 const modulesSlice = createSlice({
@@ -55,14 +55,15 @@ const modulesSlice = createSlice({
                 m._id === module._id ? module : m
             );
         },
-
+        /*
         editModule: (state, {payload: moduleId}: {payload: string})=> {
             state.modules = state.modules.map((m) =>
                 m._id === moduleId ? { ...m, editing: true } : m
             );
         },
+        */
     },
 });
 
-export const { addModule, deleteModule, updateModule, editModule, setModules } = modulesSlice.actions;
+export const { addModule, deleteModule, updateModule, setModules } = modulesSlice.actions;
 export default modulesSlice.reducer;

@@ -6,19 +6,16 @@ export default function AccountNavigation() {
 
   const links = currentUser? ["Profile"] : ["Signin", "Signup"];
   const {pathname} = useLocation();
-  
+  const active = (path: string)=> (pathname.includes(path) ?"active" : "");
   return (
     <div id="wd-account-navigation" className="wd list-group fs-5 rounded-0">
-    {links.map((link) => {
-      const isActive = pathname.includes(link.toLowerCase());
-      return (
-        <Link key={link} to={`/Kambaz/Account/${link}`}
-          id={`wd-account-${link.toLowerCase()}-link`}
-          className={`list-group-item border border-0 ${isActive ? "active" : "text-danger"}`}
-        >
-          {link}
+    {links.map((link) => (
+        <Link key={link} to={`/Kambaz/Account/${link}`} id={`wd-account-${link.toLowerCase()}-link`}
+          className={`list-group-item border border-0 ${active(link)}`}
+        > {link}
         </Link>
-      );
-    })}
+      ))}
+    {currentUser && currentUser.role === "ADMIN" && (
+    <Link to={`/Kambaz/Account/Users`} className={`list-group-item ${active("Users")}`}> Users </Link> )}
     </div>
 );}

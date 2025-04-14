@@ -17,8 +17,10 @@ export default function ModulesControls({ moduleName, setModuleName, addModule }
                 <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
                 Module</button>
 
-            <ModuleEditor dialogTitle="Add Module" moduleName={moduleName}
-                setModuleName={setModuleName} addModule={addModule} />
+            <ModuleEditor dialogTitle="Add Module" 
+                moduleName={moduleName}
+                setModuleName={setModuleName} 
+                addModule={addModule} />
 
             <div className="dropdown d-inline me-1 float-end">
                 <button id="wd-publish-all-btn" className="btn btn-lg btn-secondary dropdown-toggle"

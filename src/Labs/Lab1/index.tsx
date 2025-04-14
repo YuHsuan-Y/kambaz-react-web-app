@@ -206,7 +206,7 @@ export default function Lab1(){
             <input placeholder="jdoe" id="wd-text-fields-username" /> <br />
             
             <label htmlFor="wd-text-fields-password">Password:</label>
-            <input type="password" value="123@#$asd" id="wd-text-fields-password" />
+            <input type="password" value="123@#$asd" id="wd-text-fields-password" readOnly />
             
             <br />
             
@@ -217,26 +217,31 @@ export default function Lab1(){
             <input type="text" placeholder="Doe"
                 value="Wonderland"
                 title="The last name"
-                id="wd-text-fields-last-name" />
+                id="wd-text-fields-last-name"
+                readOnly />
             {/* copy rest of form elements here  */}
 
             <h5>Textarea</h5>
             <textarea cols={20} rows={25}
                 placeholder="Biography"
-                title="tooltip">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-            </textarea>
+                title="tooltip"
+                readOnly
+                defaultValue="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." />
 
             <h5>Text boxes</h5>
             <label>Biography:</label><br/>
-            <textarea id="wd-textarea, textboxes" cols={30} rows={10}>Lorem ipsum dolor sit
-            amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-            cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.</textarea>
+            <textarea id="wd-textarea, textboxes" 
+                cols={30} 
+                rows={10} 
+                readOnly
+                defaultValue="Lorem ipsum dolor sit
+                amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                cupidatat non proident, sunt in culpa qui officia deserunt mollit
+                anim id est laborum." />
         
             <h5 id = "wd-buttons">Buttons</h5>
             <button type="button"
@@ -254,7 +259,7 @@ export default function Lab1(){
             <input type="radio" name="radio-genre" id="wd-radio-drama"/>
             <label htmlFor="wd-radio-drama">Drama</label><br />
 
-            <input type="radio" name="radio-genre" id="wd-radio-scifi" checked/>
+            <input type="radio" name="radio-genre" id="wd-radio-scifi" defaultChecked/>
             <label htmlFor="wd-radio-scifi">Science Fiction</label> <br />
 
             <input type="radio" name="radio-genre" id="wd-radio-fantasy"/>
@@ -264,48 +269,48 @@ export default function Lab1(){
             <h5 id="wd-checkboxes">Checkboxes</h5>
             <label>Favorite movie genre:</label><br/>
 
-            <input type="checkbox" name="check-genre" id="wd-chkbox-comedy" checked/>
+            <input type="checkbox" name="check-genre" id="wd-chkbox-comedy" defaultChecked/>
             <label htmlFor="wd-chkbox-comedy">Comedy</label><br/>
 
             <input type="checkbox" name="check-genre" id="wd-chkbox-drama"/>
             <label htmlFor="wd-chkbox-drama">Drama</label><br/>
 
-            <input type="checkbox" name="check-genre" id="wd-chkbox-scifi" checked/>
+            <input type="checkbox" name="check-genre" id="wd-chkbox-scifi" defaultChecked/>
             <label htmlFor="wd-chkbox-scifi">Science Fiction</label><br/>
 
             <input type="checkbox" name="check-genre" id="wd-chkbox-fantasy"/>
             <label htmlFor="wd-chkbox-fantasy">Fantasy</label>
 
             <p></p>
-            <select>
+            <select defaultValue="VAL2">
                 <option value="VAL1">Value 1</option>
-                <option value="VAL2" selected>Value 2</option>
+                <option value="VAL2">Value 2</option>
                 <option value="VAL3">Value 3</option>
             </select>
 
             <p></p>
-            <select multiple>
-                <option value="VAL1" selected>Value 1</option>
+            <select multiple defaultValue={["VAL1", "VAL3"]}>
+                <option value="VAL1">Value 1</option>
                 <option value="VAL2">Value 2</option>
-                <option value="VAL3" selected>Value 3</option>
+                <option value="VAL3">Value 3</option>
             </select>
 
             <h4 id="wd-dropdowns">Dropdowns</h4>
             <h5>Select one</h5>
             <label htmlFor="wd-select-one-genre"> Favorite movie genre: </label><br/>
-            <select id="wd-select-one-genre">
-                <option value = "COMEDY">Comedy</option>
-                <option value = "DRAMA">drama</option>
-                <option selected value="SCIFI">Science Fiction</option>
-                <option value = "FANTASY">Fantacy</option>
+            <select id="wd-select-one-genre" defaultValue="SCIFI">
+                <option value="COMEDY">Comedy</option>
+                <option value="DRAMA">drama</option>
+                <option value="SCIFI">Science Fiction</option>
+                <option value="FANTASY">Fantacy</option>
             </select>
 
             <h5>Select many</h5>
             <label htmlFor="wd-select-many-genre"> Favorite movie genres: </label><br/>
-            <select multiple id="wd-select,manu-genre">
-                <option selected value="COMEDY">Comedy</option>
+            <select multiple id="wd-select,manu-genre" defaultValue={["COMEDY", "SCIFI"]}>
+                <option value="COMEDY">Comedy</option>
                 <option value="DRAMA">Drama</option>
-                <option selected value="SCIFI">Science Fiction</option>
+                <option value="SCIFI">Science Fiction</option>
                 <option value="FANTASY">Fantasy</option>
             </select>
 
@@ -319,19 +324,22 @@ export default function Lab1(){
                 <input type="number"
                         value="100000"
                         placeholder="1000"
-                        id="wd-text-fields-salary-start"/><br/>
+                        id="wd-text-fields-salary-start"
+                        readOnly/><br/>
 
                 <label htmlFor="wd-text-fields-rating"> Rating: </label>
                 <input type="range"
                         value="4"
                         max="5"
                         placeholder="Doe"
-                        id="wd-text-fields-rating"/><br/>
+                        id="wd-text-fields-rating"
+                        readOnly/><br/>
 
                 <label htmlFor="wd-text-fields-dob"> Date of birth: </label>
                 <input type="date"
                         value="2000-01-21"
-                        id="wd-text-fields-dob"/><br/>
+                        id="wd-text-fields-dob"
+                        readOnly/><br/>
 
             <h4>Anchor tag</h4>
                 Please <a href="http://www.lipsum.com" id="wd-lipsum"> click here </a>
